@@ -1,21 +1,20 @@
 <template>
-    <ul class="nav">
-        <li class="nav-item">
+    <ul class="navbar">
+        <li class="nav-items">
             <a class="nav-link active" href="#">Inicial</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-items">
             <a class="nav-link" href="#">Informações</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-items">
             <a class="nav-link" href="#">Contatos</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-items">
             <a href="#">
                 <img src="../../../public/build/assets/perfil.jpg" alt="perfil" class="img-perfil">
             </a>
         </li>
     </ul>
-
 </template>
 
 
@@ -34,7 +33,7 @@ export default {
     border: 0;
 }
 
-.nav {
+.navbar {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
