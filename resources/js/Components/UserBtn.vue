@@ -54,7 +54,7 @@
     </div> -->
 
     <div class="dropdown">
-  <button class="btn btn-secondary btn-l dropdown-toggle border border-0 d-flex" type="button" data-bs-toggle="dropdown" aria-expanded="false"><box-icon name='user'></box-icon>Leonardo Carvalho</button>
+  <button class="btn btn-secondary btn-l dropdown-toggle border border-0 d-flex dropdown-menu-end" type="button" data-bs-toggle="dropdown" aria-expanded="false"><box-icon name='user'></box-icon>Leonardo Carvalho</button>
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="#">Perfil</a></li>
         <li><hr class="dropdown-divider"></li>
