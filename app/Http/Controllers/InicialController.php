@@ -11,4 +11,6 @@ class InicialController extends Controller
     {
         return inertia('Inicial/Home');
     }
+
+    
 }
