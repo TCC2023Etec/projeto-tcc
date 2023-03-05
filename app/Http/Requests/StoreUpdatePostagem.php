@@ -24,7 +24,8 @@ class StoreUpdatePostagem extends FormRequest
         return [
             'id' => 'nullable|integer|exists:postagens,id',
             'titulo' => 'required|string',
-            'descricao' => 'required|string|max:255'
+            'descricao' => 'required|string|max:255',
+            'imagem' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }

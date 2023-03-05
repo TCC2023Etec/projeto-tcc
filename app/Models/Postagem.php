@@ -9,7 +9,7 @@ class Postagem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['titulo', 'descricao'];
+    protected $fillable = ['titulo', 'descricao', 'imagem'];
 
     protected $table = 'postagens';
 

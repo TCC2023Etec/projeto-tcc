@@ -1,7 +1,7 @@
 <template>
     <AdminLayout />
 
-    <form class="position-relative form border border-light-subtle p-2 rounded" @submit.prevent="formSubmit">
+    <form class="position-relative form border border-light-subtle p-2 rounded" @submit.prevent="formSubmit" enctype="multipart/form-data">
             <div class="container-xxl">
                 <div class="form-floating mb-4 border border-0">
                     <input type="textarea" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInput" placeholder="Título" v-model="form.titulo">
@@ -13,10 +13,11 @@
                     <label for="descricao">Descrição</label>
                     <MensagemErro :mensagem="form.errors.descricao"/>
                 </div>
-                <!-- <div class="mb-3 d-flex">
+                <div class="mb-3 d-flex flex-column justify-content-start shadow-sm bg-body-tertiary rounded p-2">
                     <label for="imagem" class="form-label me-3">Imagem</label>
-                    <input class="form-control" type="file" id="formFileMultiple" multiple>
-                </div> -->
+                    <input class="form-control" type="file" id="formFileMultiple" multiple @input="form.imagem = $event.target.files[0]">
+                    <MensagemErro :mensagem="form.errors.imagem" />
+                </div>
                 <div class="col-12">
                     <button class="btn" type="submit" :disabled="form.processing">Enviar</button>
                 </div>
@@ -48,19 +49,18 @@ export default {
             .submit('post', route('postagem.create'), {
                 _method: 'put',
             });
-            // router.post('/nova-postagem', this.form);
         },
     },
     setup () {
-            const form = useForm({
-                id: null,
-                titulo: '',
-                descricao: '',
-                // imagem: ''
-            });
+        const form = useForm({
+            id: null,
+            titulo: '',
+            descricao: '',
+            imagem: []
+        });
 
-            return { form };
-        }
+        return { form };
+    }
 }
 
 </script>

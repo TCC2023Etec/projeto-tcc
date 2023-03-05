@@ -101,7 +101,7 @@ return [
     'prohibited_unless'    => 'The :attribute field is prohibited unless :other is in :values.',
     'regex'                => 'O formato do valor informado no campo :attribute é inválido.',
     'relatable'            => 'This :attribute may not be associated with this resource.',
-    'required'             => 'O campo :attribute é obrigatório.',
+    'required'             => 'Este campo é obrigatório.',
     'required_if'          => 'O campo :attribute é obrigatório quando o valor do campo :other é igual a :value.',
     'required_unless'      => 'O campo :attribute é obrigatório a menos que :other esteja presente em :values.',
     'required_with'        => 'O campo :attribute é obrigatório quando :values está presente.',
