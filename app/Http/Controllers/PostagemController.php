@@ -15,7 +15,7 @@ class PostagemController extends Controller
 
     public function store(StoreUpdatePostagem $request)
     {
-        dd($request);
+        // dd($request);
 
         $postagem = new Postagem;
 
@@ -33,8 +33,10 @@ class PostagemController extends Controller
 
             $requestImage->store('postagens');
 
-            $postagem -> image = $imageName;
+            $postagem->imagem = $imageName;
         }
+
+        $postagem->save();
 
         // $postagem = Postagem::create([
         //     'titulo'    => $request->titulo,
