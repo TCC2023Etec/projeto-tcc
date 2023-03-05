@@ -1,6 +1,4 @@
 <template>
-    <AdminLayout />
-
     <form class="position-relative form border border-light-subtle p-2 rounded" @submit.prevent="formSubmit" enctype="multipart/form-data">
             <div class="container-xxl">
                 <div class="form-floating mb-4 border border-0">
@@ -8,11 +6,20 @@
                     <label for="titulo">Título</label>
                     <MensagemErro :mensagem="form.errors.titulo"/>
                 </div>
+
                 <div class="form-floating mb-4">
-                    <textarea type="textarea" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInput" placeholder="Texto" style="height: 150px" v-model="form.descricao"></textarea>
+                    <textarea type="textarea" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInput" placeholder="Texto" style="height: 100px" v-model="form.descricao"></textarea>
                     <label for="descricao">Descrição</label>
                     <MensagemErro :mensagem="form.errors.descricao"/>
+                    <span class="text-muted">Este texto ficará no cartão da postagem</span>
                 </div>
+
+                <div class="form-floating mb-4">
+                    <textarea type="textarea" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInput" placeholder="Conteúdo" style="height: 150px" v-model="form.conteudo"></textarea>
+                    <label for="descricao">Conteúdo</label>
+                    <MensagemErro :mensagem="form.errors.conteudo"/>
+                </div>
+
                 <div class="mb-3 d-flex flex-column justify-content-start shadow-sm bg-body-tertiary rounded p-2">
                     <label for="imagem" class="form-label me-3">Imagem</label>
                     <input class="form-control" type="file" id="formFileMultiple" multiple @input="form.imagem = $event.target.files[0]">
@@ -56,6 +63,7 @@ export default {
             id: null,
             titulo: '',
             descricao: '',
+            conteudo: '',
             imagem: []
         });
 

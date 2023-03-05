@@ -2,7 +2,9 @@
     <div>
         <AdminLayout />
         <SmallCard />
-        <BigCard />
+        <BigCard 
+        :postagens="postagens"
+        />
     </div>
 
 </template>
@@ -22,6 +24,9 @@ export default {
         SmallCard,
         BigCard,
         AdminLayout
+    },
+    props: {
+        postagens: Object
     }
 }
 

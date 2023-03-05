@@ -10,17 +10,16 @@ class PostagemController extends Controller
 {
     public function create_postagem()
     {
-        return inertia('CadastroPostagem/Create');
+        return inertia('Postagem/Create');
     }
 
     public function store(StoreUpdatePostagem $request)
     {
-        // dd($request);
-
         $postagem = new Postagem;
 
         $postagem->titulo = $request->titulo;
         $postagem->descricao = $request->descricao;
+        $postagem->conteudo = $request->conteudo;
 
         //image upload
         if($request -> hasfile('imagem') && $request -> file('imagem') -> isValid()) {
@@ -38,12 +37,11 @@ class PostagemController extends Controller
 
         $postagem->save();
 
-        // $postagem = Postagem::create([
-        //     'titulo'    => $request->titulo,
-        //     'descricao' => $request->descricao,
-        //     'imagem'    => $imagem
-        // ]);
-
         return redirect()->route('inicial.index')->with('mensagem', 'Postagem enviada para análise!');
+    }
+
+    public function show (Postagem $postagem)
+    {
+        return inertia('Postagem/Show', ['postagem' => $postagem]);
     }
 }
