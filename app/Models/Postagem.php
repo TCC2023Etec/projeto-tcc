@@ -11,6 +11,8 @@ class Postagem extends Model
 
     protected $fillable = ['titulo', 'descricao'];
 
+    protected $table = 'postagens';
+
     // Relações
     public function usuario()
     {

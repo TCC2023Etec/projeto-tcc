@@ -2,11 +2,11 @@
     <div class="dropdown">
   <button class="btn btn-secondary btn-l dropdown-toggle border border-0 d-flex dropstart me-5" type="button" data-bs-toggle="dropdown" aria-expanded="false"><box-icon name='user'></box-icon>Leonardo Carvalho</button>
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Perfil</a></li>
+        <li><Link class="dropdown-item" href="#">Perfil</Link></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" :href="route('postagem.create')">Criar publicação</a></li>
+        <li><Link class="dropdown-item" :href="route('postagem.create')">Criar publicação</Link></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sair</a></li>
+        <li><Link class="dropdown-item" href="#">Sair</Link></li>
     </ul>
     </div>
 </template>
