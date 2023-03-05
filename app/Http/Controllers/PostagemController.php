@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Postagem;
 use Illuminate\Http\Request;
 
 class PostagemController extends Controller
@@ -13,6 +14,9 @@ class PostagemController extends Controller
 
     public function store(Request $request)
     {
-        //
+        dd($request);
+        $postagem = Postagem::create($request);
+
+        return redirect()->route('inicial.index');
     }
 }
