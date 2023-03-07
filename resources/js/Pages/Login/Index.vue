@@ -39,7 +39,7 @@
             </div>
     </form> -->
 
-    <form class="row g-3 needs-validation form border border-light-subtle p-2 rounded" novalidate>
+    <form class="row g-3 needs-validation form border border-light-subtle p-2 rounded" novalidate @submit.prevent="formSubmit">
         <div class="col-md-4">
             <label for="Nome" class="form-label">Nome</label>
             <input type="text" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInput" placeholder="Digite seu nome" v-model="form.nome">
@@ -66,15 +66,15 @@
         </div>
         <div class="col-md-4">
             <label for="Cidade" class="form-label">Cidade</label>
-            <input type="text" class="form-control" id="validationCustom03" v-model="form.cidade">
+            <input type="text" class="form-control shadow-sm bg-body-tertiary rounded" id="validationCustom03" v-model="form.cidade">
             <div class="invalid-feedback">
             Please provide a valid city.
             </div>
         </div>
         <div class="col-md-4">
             <label for="validationCustom04" class="form-label">Estado</label>
-            <select class="form-select" id="validationCustom04">
-                <option selected disabled value="">Choose...</option>
+            <select class="form-select shadow-sm bg-body-tertiary rounded" id="validationCustom04">
+                <option selected disabled value="">Selecione</option>
                 <option>...</option>
             </select>
             <div class="invalid-feedback">
@@ -83,7 +83,7 @@
         </div>
         <div class="col-md-4">
             <label for="validationCustom05" class="form-label">Telefone</label>
-            <input type="text" class="form-control" id="validationCustom05" v-model="form.telefone" placeholder="Informe seu telefone">
+            <input type="text" class="form-control shadow-sm bg-body-tertiary rounded" id="validationCustom05" v-model="form.telefone" placeholder="Informe seu telefone">
             <div class="invalid-feedback">
             Please provide a valid zip.
             </div>

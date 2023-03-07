@@ -41,7 +41,7 @@ export default {
     height: 50px;
     width: 100%;
 
-    color: white;
+    color: #fff;
     background-color: rgba(178,0,0,255);
 }
 

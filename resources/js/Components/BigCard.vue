@@ -3,7 +3,7 @@
         <div class="row g-0">
           <div class="col-md-4">
             <Link :href="route('postagem.show', postagem.id)" class="nav-link">
-              <img :src="`/img/${postagem.imagem}`" class="img-fluid rounded-start" alt="Postagem">
+              <img :src="`storage/postagem/${postagem.imagem}`" class="img-fluid rounded-start" alt="Postagem">
             </Link>
           </div>
           <div class="col-md-8">

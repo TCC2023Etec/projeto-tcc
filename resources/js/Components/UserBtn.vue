@@ -1,17 +1,33 @@
 <template>
-    <div class="dropdown">
-  <button class="btn btn-secondary btn-l dropdown-toggle border border-0 d-flex dropstart me-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <i class='bx bx-user'></i>
-    Leonardo Carvalho
-    </button>
+    <nav v-if="!$page.props.auth.user" class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <Link class="navbar-brand texto" :href="route('login')">Login</Link>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <Link class="navbar-brand texto" :href="route('register')">Cadastrar</Link>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    </nav>
     
-    <ul class="dropdown-menu">
-        <li><Link class="dropdown-item" href="#">Perfil</Link></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><Link class="dropdown-item" :href="route('postagem.create')">Criar publicação</Link></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><Link class="dropdown-item" href="#">Sair</Link></li>
-    </ul>
+    <div v-if="$page.props.auth.user" class="dropdown">
+        <button class="btn btn-secondary btn-l dropdown-toggle border border-0 d-flex dropstart me-5 texto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class='bx bx-user'></i>
+        {{ $page.props.auth.user.name }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+            <li><Link class="dropdown-item" href="#">Perfil</Link></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><Link class="dropdown-item" :href="route('postagem.create')">Criar publicação</Link></li>
+            <li><hr class="dropdown-divider"></li>
+            <Link method="POST" class="dropdown-item" as="button" :href="route('logout')">
+                <i class="bx bx-power-off me-2"></i>
+                <span class="align-middle">Sair</span>
+            </Link>
+        </ul>
     </div>
 </template>
 
@@ -21,7 +37,7 @@ import { Link } from '@inertiajs/vue3';
 export default {
     name: "UserBtn",
     components: {
-        Link
+        Link,
     }
 }
 </script>
@@ -33,5 +49,10 @@ export default {
 
     max-height: 30%;
     max-width: 30%;
+}
+
+.texto {
+    color: #fff;
+    font-size: 19px;
 }
 </style>
