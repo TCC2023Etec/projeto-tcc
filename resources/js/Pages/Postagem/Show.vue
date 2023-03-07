@@ -1,6 +1,19 @@
 <template>
     <AdminLayout />
 
+    <div class="container-fluid">
+        <header>
+            <h1>{{ postagem.titulo }}</h1>
+        </header>
+
+        <section>
+            <p>{{ postagem.descricao }}</p>
+        </section>
+
+        <footer>
+            <p>{{ postagem.conteudo }}</p>
+        </footer>
+    </div>
 </template>
 
 <script>
@@ -16,3 +29,11 @@ export default {
     }
 }
 </script>
+
+<style>
+.container {
+    border: 1px solid blue;
+
+    
+}
+</style>

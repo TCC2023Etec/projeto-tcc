@@ -11,7 +11,7 @@
                     <textarea type="textarea" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInput" placeholder="Texto" style="height: 100px" v-model="form.descricao"></textarea>
                     <label for="descricao">Descrição</label>
                     <MensagemErro :mensagem="form.errors.descricao"/>
-                    <span class="text-muted">Este texto ficará no cartão da postagem</span>
+                    <span class="text-muted ms-2">Este texto ficará no cartão da postagem</span>
                 </div>
 
                 <div class="form-floating mb-4">

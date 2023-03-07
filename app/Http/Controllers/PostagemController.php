@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdatePostagem;
 use App\Models\Postagem;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\PostDec;
 
 class PostagemController extends Controller
 {
@@ -30,12 +32,28 @@ class PostagemController extends Controller
 
             $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
 
-            $requestImage->store('postagens');
+            // $requestImage->store('postagens');
+
+            $request->imagem->move(public_path('img'), $imageName);
 
             $postagem->imagem = $imageName;
+
+
+            // $nome_imagem = Str::of($request->email . date('dmYhis'))->slug('-') . '.' . $request->imagem->getClientOriginalExtension();
+
+            // $imagem = $request->imagem->storeAs('postagem', $nome_imagem, 'public');
+            // // $data['imagem'] = $imagem;
+            // $postagem->imagem = $imagem;
         }
 
+        // $data['titulo'] = $request->titulo;
+        // $data['descricao'] = $request->descricao;
+        // $data['conteudo'] = $request->conteudo;
+
+        // $postagem = new Postagem($data);
         $postagem->save();
+
+        // dd($postagem);
 
         return redirect()->route('inicial.index')->with('mensagem', 'Postagem enviada para análise!');
     }
