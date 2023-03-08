@@ -12,7 +12,7 @@ class InicialController extends Controller
     {
         $postagens = Postagem::all();
 
-        return inertia('Inicial/Home', ['postagens' => $postagens]);
+        return inertia('Home', ['postagens' => $postagens]);
     }
 
     

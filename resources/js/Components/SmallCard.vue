@@ -8,6 +8,7 @@
             </div>
             <div class="card-footer text-muted">
                 {{ postagem.created_at }}
+                {{ postagem.user_id }}
             </div>
         </Link>
     </div>

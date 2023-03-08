@@ -10,14 +10,14 @@ class Postagem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['titulo', 'descricao', 'imagem'];
+    protected $fillable = ['titulo', 'descricao', 'imagem', 'conteudo'];
 
     protected $table = 'postagens';
 
     // Relações
     public function usuario()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**

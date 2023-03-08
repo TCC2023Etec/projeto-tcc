@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Postagem;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,14 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comentarios', function (Blueprint $table) {
-            $table->id();
-            $table->string('descricao', 255);
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Postagem::class);
-
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('postagens', function (Blueprint $table) {
+            $table->foreignIdFor(User::class)->after('conteudo');
         });
     }
 
@@ -29,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comentarios');
+        Schema::table('postagens', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+        });
     }
 };

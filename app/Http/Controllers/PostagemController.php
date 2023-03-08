@@ -34,13 +34,14 @@ class PostagemController extends Controller
 
             $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
 
-            // $requestImage->store('postagens');
-
             $request->imagem->move(public_path('storage/postagem'), $imageName);
 
             $postagem->imagem = $imageName;
         }
 
+        $postagem->usuario()->associate($request->user());
+        // $movimentoFinanceiro->administrador()->associate($request->user());
+        
         $postagem->save();
 
         return redirect()->route('inicial.index')->with('mensagem', 'Postagem enviada para análise!');
