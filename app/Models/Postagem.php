@@ -17,7 +17,7 @@ class Postagem extends Model
     // Relações
     public function usuario()
     {
-        $this->belongsTo(Usuarios::class);
+        return $this->belongsTo(User::class);
     }
 
     /**

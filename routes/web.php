@@ -17,7 +17,7 @@ Route::controller(InicialController::class)->group(function () {
 Route::controller(PostagemController::class)->group(function () {
 
     Route::get('/nova-publicacao', 'create_postagem')->name('postagem.create');
-    Route::get('/publicacao/{publicacao}', 'show')->name('postagem.show');
+    Route::get('/publicacao/{postagem}', 'show')->name('postagem.show');
     
     Route::post('/nova-publicacao', 'store')->name('postagem.store');
 });

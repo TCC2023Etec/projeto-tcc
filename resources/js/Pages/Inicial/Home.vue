@@ -1,15 +1,17 @@
 <template>
     <div>
         <AdminLayout />
-        <SmallCard />
-        <BigCard 
-        :postagens="postagens"
-        />
+        <div class="container-fluid">
+            <SmallCard v-for="postagem in postagens"
+            :postagem="postagem"
+            />
+            <!-- <BigCard
+            :postagens="postagens"
+            /> -->
+        </div>
     </div>
 
 </template>
-
-
 
 <script>
 import Navbar from '../../Components/Navbar.vue';
@@ -29,5 +31,4 @@ export default {
         postagens: Object
     }
 }
-
 </script>

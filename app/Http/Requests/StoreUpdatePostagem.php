@@ -22,10 +22,10 @@ class StoreUpdatePostagem extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'nullable|integer|exists:postagens,id',
-            'titulo' => 'required|string',
+            'id'        => 'nullable|integer|exists:postagens,id',
+            'titulo'    => 'required|string',
             'descricao' => 'required|string|max:255',
-            'imagem' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'imagem'    => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }

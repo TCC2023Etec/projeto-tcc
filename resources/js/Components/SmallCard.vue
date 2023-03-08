@@ -1,18 +1,29 @@
 <template>
-    <div class="card" style="width: 18rem;">
-        <img src="../../../public/build/assets/paises-da-europa-ft-mapa.jpg" class="card-img-top img-fluid rounded mx-auto d-block" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Exemplo de publicação</h5>
-            <p class="card-text">Esse é apenas um exemplo de publicação</p>
-            <a href="#" class="btn btn-primary mt-3">Ler mais</a>
-        </div>
+    <div class="card me-1 mb-3" style="width: 18rem;">
+        <Link :href="route('postagem.show', postagem.id)" class="nav-link">
+            <img :src="`storage/postagem/${postagem.imagem}`" class="card-img-top img-fluid rounded mx-auto d-block" alt="Postagem">
+            <div class="card-body">
+                <h5 class="card-title">{{ postagem.titulo }}</h5>
+                <p class="card-text">{{ postagem.descricao }}</p>            
+            </div>
+            <div class="card-footer text-muted">
+                {{ postagem.created_at }}
+            </div>
+        </Link>
     </div>
 </template>
 
 <script>
+import { Link } from '@inertiajs/vue3'
 
 export default {
     name: "SmallCard",
+    components: {
+        Link
+    },
+    props: {
+        postagem: Object
+    }
 }
 
 </script>

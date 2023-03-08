@@ -32,7 +32,7 @@ const submit = () => {
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submit" class="cartao">
             <div>
                 <InputLabel for="email" value="Email" />
 
@@ -57,3 +57,10 @@ const submit = () => {
         </form>
     </GuestLayout>
 </template>
+
+<style>
+.cartao {
+    background-color: #f0f8ea;
+    border: 1px solid blue;
+}
+</style>
