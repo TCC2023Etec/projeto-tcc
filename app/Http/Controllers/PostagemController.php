@@ -19,11 +19,11 @@ class PostagemController extends Controller
 
     public function store(StoreUpdatePostagem $request)
     {
-        $postagem = new Postagem;
+        $post = new Postagem;
 
-        $postagem->titulo = $request->titulo;
-        $postagem->descricao = $request->descricao;
-        $postagem->conteudo = $request->conteudo;
+        $post->titulo = $request->titulo;
+        $post->descricao = $request->descricao;
+        $post->conteudo = $request->conteudo;
 
         //image upload
         if($request -> hasfile('imagem') && $request -> file('imagem') -> isValid()) {
@@ -36,13 +36,13 @@ class PostagemController extends Controller
 
             $request->imagem->move(public_path('storage/postagem'), $imageName);
 
-            $postagem->imagem = $imageName;
+            $post->imagem = $imageName;
         }
 
-        $postagem->usuario()->associate($request->user());
+        $post->usuario()->associate($request->user());
         // $movimentoFinanceiro->administrador()->associate($request->user());
         
-        $postagem->save();
+        $post->save();
 
         return redirect()->route('inicial.index')->with('mensagem', 'Postagem enviada para análise!');
     }

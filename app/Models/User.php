@@ -50,4 +50,13 @@ class User extends Authenticatable
     {
         return $date->format('d-m-Y');
     }
+
+    /**
+     * Relações
+     */
+
+    public function posts()
+    {
+        return $this->hasMany(Postagem::class);
+    }
 }
