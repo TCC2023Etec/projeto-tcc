@@ -12,6 +12,7 @@ const form = useForm({
     password: '',
     password_confirmation: '',
     terms: false,
+    tipo: '',
 });
 
 const submit = () => {
@@ -86,6 +87,13 @@ const submit = () => {
 
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>
+
+            <InputLabel for="password_confirmation" value="Tipo" class="mt-4"/>
+            <select class="form-select border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" aria-label="Default select example" v-model="form.tipo">
+                <option selected>Selecione o tipo de cadastro</option>
+                <option value="aluno">Aluno</option>
+                <option value="professor">Professor</option>
+            </select>
 
             <div class="flex items-center justify-end mt-4">
                 <Link
