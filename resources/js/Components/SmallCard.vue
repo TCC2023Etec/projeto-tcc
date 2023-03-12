@@ -7,8 +7,9 @@
                 <p class="card-text">{{ postagem.descricao }}</p>            
             </div>
             <div class="card-footer text-muted">
-                {{ postagem.created_at }}
-                {{ postagem.user_id }}
+                Criado em: {{ postagem.created_at }}
+                <br>
+                Postado por: {{ postagem.usuario.name }}
             </div>
         </Link>
     </div>

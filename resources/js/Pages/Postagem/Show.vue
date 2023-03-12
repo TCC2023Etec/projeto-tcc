@@ -3,7 +3,7 @@
 
     <div class="container-fluid">
         <header>
-            <img :src="`storage/postagem/${postagem.imagem}`" alt="Postagem">
+            <img :src="`/storage/postagem/${postagem.imagem}`" alt="Postagem">
             <h1>{{ postagem.titulo }}</h1>
         </header>
 
