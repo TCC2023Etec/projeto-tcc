@@ -1,25 +1,48 @@
 <template>
     <nav class="sidebar">
         <div class="sidebar-header">
-            <img src="../../../public/img/centro-paula-souza-logo.svg" alt="Logo CPS" class="sidebar-logo">
+            <!-- <img src="../../../public/img/centro-paula-souza-logo.svg" alt="Logo CPS" class="sidebar-logo"> -->
             <h3>Menu</h3>
         </div>
-      <ul>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 4</a></li>
-        <li><a href="#">Item 5</a></li>
+      <ul class="d-flex flex-column">
+        <li class="btn_sidebar"><Link href="#">Validar Publicações</Link></li>
+        <li class="btn_sidebar"><Link href="#">Validar Usuários</Link></li>
+        <li class="btn_sidebar"><Link href="#">Criar Usuários</Link></li>
+        <li class="btn_sidebar"><Link href="#">Item 4</Link></li>
+        <li class="btn_sidebar"><Link href="#">Item 5</Link></li>
       </ul>
+
         <footer>
-          <p>© 2023 - Leo Carv</p>
+          <div class="dropdown dropup">
+              <button class="btn btn-secondary btn-l dropdown-toggle border border-0 dropup me-5 texto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class='bx bx-user'></i>
+              {{ $page.props.auth.user.name }}
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                  <li><Link class="dropdown-item" href="#"><i class='bx bx-user me-2'></i>Perfil</Link></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><Link class="dropdown-item" :href="route('inicial.index')"><i class='bx bx-cog me-2'></i>Início</Link></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><Link class="dropdown-item" :href="route('postagem.create')"><i class='bx bx-edit-alt me-2'></i>Criar publicação</Link></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <Link method="POST" class="dropdown-item" as="button" :href="route('logout')">
+                      <i class="bx bx-power-off me-2"></i>
+                      <span class="align-middle">Sair</span>
+                  </Link>
+              </ul>
+          </div>
         </footer>
     </nav>
 </template>
 
 <script>
+import { Link } from '@inertiajs/vue3';
+
 export default {
-    name: "Sidebar"
+    name: "Sidebar",
+    components: {
+      Link
+    }
 }
 </script>
 
@@ -35,6 +58,12 @@ export default {
   overflow-x: hidden;
   padding-top: 20px;
   color: #fff;
+  max-width: calc(100% - 20px); /* limite de 20px para a margem esquerda */
+}
+
+.btn_sidebar {
+  text-align: left;
+  padding: 0;
 }
 
 .sidebar ul {
@@ -43,12 +72,14 @@ export default {
   padding: 0;
 }
 
-.sidebar li {
+.d-flex > li {
   padding: 15px;
   font-size: 1.2rem;
+  /* background-color: #36413E; */
+  margin-bottom: 5px;
 }
 
-.sidebar li:hover {
+.d-flex > li:hover {
   background-color: #555;
 }
 
@@ -63,7 +94,7 @@ export default {
   font-weight: 600;
 }
 
-.sidebar a {
+.d-flex > a {
   color: #fff;
   text-decoration: none;
 }
@@ -81,7 +112,7 @@ export default {
   bottom: 0;
   width: 100%;
   height: 50px;
-  line-height: 50px;
+  line-height: 30px;
 }
 
 .sidebar footer p {

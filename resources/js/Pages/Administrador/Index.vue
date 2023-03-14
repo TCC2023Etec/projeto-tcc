@@ -1,16 +1,16 @@
 <template>
     <Layout>
-        <Sidebar />
+        
     </Layout>
 </template>
 
 <script>
-import Sidebar from '@/Components/Sidebar.vue';
+import Layout from '@/Layouts/Layout.vue';
 
 export default {
     name: 'Index',
     components: {
-        Sidebar
+        Layout
     }
 }
 </script>
