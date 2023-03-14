@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('administradores', function (Blueprint $table) {
             $table->id();
 
-            $table->string('nome', 150);
+            $table->string('name', 150);
             $table->string('email', 100);
-            $table->string('senha', 25);
+            $table->string('password', 25);
 
             $table->timestamps();
             $table->softDeletes();

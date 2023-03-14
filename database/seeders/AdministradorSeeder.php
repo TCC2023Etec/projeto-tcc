@@ -15,9 +15,9 @@ class AdministradorSeeder extends Seeder
     public function run(): void
     {
         Administrador::create([
-            'nome' => 'Admin Mural',
+            'name' => 'Admin Mural',
             'email' => 'admin@mural.com',
-            'senha' => '12345678'
+            'password' => '12345678'
         ]);
     }
 }

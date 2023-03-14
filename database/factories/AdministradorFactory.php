@@ -18,9 +18,9 @@ class AdministradorFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->name(),
+            'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'senha' => Hash::make('12345678')
+            'password' => Hash::make('12345678')
         ];
     }
 }
