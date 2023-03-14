@@ -13,39 +13,38 @@ use Inertia\Inertia;
 
 /**
  * Login
+ * NÃO ESTÁ SENDO USADO POIS O MODELO DO BREEZE ESTÁ NO LUGAR DESSES
  */
-Route::controller(LoginController::class)->group(function () {
-    Route::get('/login', 'index')->name('login.index');
-
-    Route::post('/login', 'store')->name('login.store');
+Route::prefix('login')->group(function () {
+    Route::get('/', [LoginController::class, 'index'])->name('login.index');
+    Route::post('/', [LoginController::class, 'store'])->name('login.store');
 });
+
 
 /**
- * Tele inicial
+ * Tela inicial
  */
-Route::controller(InicialController::class)->group(function () {
-    Route::get('/', 'index')->name('inicial.index');
-    
+Route::prefix('/')->group(function () {
+    Route::get('/', [InicialController::class, 'index'])->name('inicial.index');
 });
+
 
 
 /**
  * Administrador 
  */
-Route::controller(AdministradorController::class)->prefix('admin')->group(function () {
-    Route::get('/', 'index')->name('admin.index');
+Route::middleware(['auth', 'App\Http\Middleware\CheckUserType:professor'])->namespace('App\Http\Controllers')->group(function () {
+    Route::get('/painel-controle', 'AdministradorController@index')->name('admin.index');
 });
 
-Route::middleware('auth')->group(function () {    
+
+Route::middleware('auth')->namespace('App\Http\Controllers')->group(function () {    
     /**
      * Postagem
      */
-    Route::controller(PostagemController::class)->group(function () {
-        Route::get('/nova-publicacao', 'create_postagem')->name('postagem.create');
-        Route::get('/publicacao/{postagem}', 'show')->name('postagem.show');
-        
-        Route::post('/nova-publicacao', 'store')->name('postagem.store');
-    });
+    Route::get('/nova-publicacao', [PostagemController::class, 'create'])->name('postagem.create');
+    Route::get('/publicacao/{postagem}', [PostagemController::class, 'show'])->name('postagem.show');
+    Route::post('/nova-publicacao', [PostagemController::class, 'store'])->name('postagem.store');
 
     /**
      * Profile
@@ -65,8 +64,8 @@ Route::get('/teste', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';

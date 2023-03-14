@@ -64,9 +64,6 @@ export default {
         return {
             usuarioLogado: this.$page.props.auth.user
         }
-    },
-    mounted(){
-        console.log(this.usuarioLogado)
     }
 }
 </script>
