@@ -11,6 +11,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Inertia\Inertia;
 
+// Middleware
+use App\Http\Middleware\CheckUserType;
+
 /**
  * Login
  * NÃO ESTÁ SENDO USADO POIS O MODELO DO BREEZE ESTÁ NO LUGAR DESSES
@@ -33,8 +36,8 @@ Route::prefix('/')->group(function () {
 /**
  * Administrador 
  */
-Route::middleware(['auth', 'App\Http\Middleware\CheckUserType:professor'])->namespace('App\Http\Controllers')->group(function () {
-    Route::get('/painel-controle', 'AdministradorController@index')->name('admin.index');
+Route::middleware(['auth', CheckUserType::class])->group(function () {
+    Route::get('/painel-controle', [AdministradorController::class, 'index'])->name('admin.index');
 });
 
 
