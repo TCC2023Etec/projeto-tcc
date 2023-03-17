@@ -23,6 +23,15 @@ const submit = () => {
         onFinish: () => form.reset('password'),
     });
 };
+
+const mostrarSenha = () => {
+    var senhaInput = document.getElementById("password");
+    if (senhaInput.type === "password") {
+        senhaInput.type = "text";
+    } else {
+        senhaInput.type = "password";
+    }
+} 
 </script>
 
 <template>
@@ -61,7 +70,7 @@ const submit = () => {
                     required
                     autocomplete="current-password"
                 />
-
+                <button @click.prevent="mostrarSenha">Mostrar senha</button>
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 

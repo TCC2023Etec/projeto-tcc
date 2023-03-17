@@ -20,6 +20,39 @@ const submit = () => {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
+
+const mostrarSenha = () => {
+    var senhaInput = document.querySelector('.senha');
+    var btn = document.querySelector('#btn-senha');
+    var icone = document.querySelector('#btn-senha i');
+
+    if (senhaInput.type === "password") {
+        senhaInput.type = "text";
+        // btn.textContent = "Esconder senha";
+        icone.classList.remove('bx-show-alt');
+        icone.classList.add('bxs-hide')
+    } else {
+        senhaInput.type = "password";
+        // btn.textContent = "Mostrar senha";
+        icone.classList.remove('bxs-hide');
+        icone.classList.add('bx-show-alt')
+    }
+}
+
+const mostrarConfirmacaoSenha = () => {
+    var senhaInput = document.querySelector('.confirmaca_senha');
+    var btn = document.querySelector('#btn-confirmacao-senha');
+    var icone = document.querySelector('#btn-confirmacao-senha i');
+
+    if (senhaInput.type === "password") {
+        senhaInput.type = "text";
+        // btn.textContent = "Esconder senha";
+        icone.classList
+    } else {
+        senhaInput.type = "password";
+        // btn.textContent = "Mostrar senha";
+    }
+}
 </script>
 
 <template>
@@ -38,6 +71,7 @@ const submit = () => {
                     required
                     autofocus
                     autocomplete="name"
+                    placeholder="Digite seu nome"
                 />
 
                 <InputError class="mt-2" :message="form.errors.name" />
@@ -53,6 +87,7 @@ const submit = () => {
                     v-model="form.email"
                     required
                     autocomplete="username"
+                    placeholder="Digite seu e-mail"
                 />
 
                 <InputError class="mt-2" :message="form.errors.email" />
@@ -61,14 +96,24 @@ const submit = () => {
             <div class="mt-4">
                 <InputLabel for="password" value="Senha" />
 
-                <TextInput
+                <!-- <TextInput
                     id="password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="mt-1 block w-full senha"
                     v-model="form.password"
                     required
                     autocomplete="new-password"
                 />
+                <button @click.prevent="mostrarSenha" id="btn-senha">
+                    <i class='bx bx-show-alt'></i>
+                </button> -->
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control senha" placeholder="Digite sua senha" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="form.password">
+                    <button @click.prevent="mostrarSenha" id="btn-senha" class="input-group-text">
+                        <i class='bx bx-show-alt'></i>
+                    </button>
+                </div>
 
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
@@ -76,14 +121,22 @@ const submit = () => {
             <div class="mt-4">
                 <InputLabel for="password_confirmation" value="Confirmação da senha" />
 
-                <TextInput
+                <!-- <TextInput
                     id="password_confirmation"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="mt-1 block w-full confirmaca_senha"
                     v-model="form.password_confirmation"
                     required
                     autocomplete="new-password"
                 />
+                <button @click.prevent="mostrarConfirmacaoSenha" id="btn-confirmacao-senha">Mostrar senha</button> -->
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control confirmaca_senha" placeholder="Confirme sua senha" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="form.password_confirmation">
+                    <button @click.prevent="mostrarConfirmacaoSenha" id="btn-confirmacao-senha" class="input-group-text">
+                        <i class='bx bx-show-alt'></i>
+                    </button>
+                </div>
 
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>
