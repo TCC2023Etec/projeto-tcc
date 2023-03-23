@@ -30,11 +30,11 @@ const mostrarSenha = () => {
         senhaInput.type = "text";
         // btn.textContent = "Esconder senha";
         icone.classList.remove('bx-show-alt');
-        icone.classList.add('bxs-hide')
+        icone.classList.add('bx-hide')
     } else {
         senhaInput.type = "password";
         // btn.textContent = "Mostrar senha";
-        icone.classList.remove('bxs-hide');
+        icone.classList.remove('bx-hide');
         icone.classList.add('bx-show-alt')
     }
 }
@@ -47,10 +47,13 @@ const mostrarConfirmacaoSenha = () => {
     if (senhaInput.type === "password") {
         senhaInput.type = "text";
         // btn.textContent = "Esconder senha";
-        icone.classList
+        icone.classList.remove('bx-show-alt');
+        icone.classList.add('bx-hide')
     } else {
         senhaInput.type = "password";
         // btn.textContent = "Mostrar senha";
+        icone.classList.remove('bx-hide');
+        icone.classList.add('bx-show-alt')
     }
 }
 </script>
@@ -109,7 +112,7 @@ const mostrarConfirmacaoSenha = () => {
                 </button> -->
 
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control senha" placeholder="Digite sua senha" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="form.password">
+                    <input type="password" class="form-control senha" placeholder="Digite sua senha" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="form.password">
                     <button @click.prevent="mostrarSenha" id="btn-senha" class="input-group-text">
                         <i class='bx bx-show-alt'></i>
                     </button>
@@ -132,7 +135,7 @@ const mostrarConfirmacaoSenha = () => {
                 <button @click.prevent="mostrarConfirmacaoSenha" id="btn-confirmacao-senha">Mostrar senha</button> -->
 
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control confirmaca_senha" placeholder="Confirme sua senha" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="form.password_confirmation">
+                    <input type="password" class="form-control confirmaca_senha" placeholder="Confirme sua senha" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="form.password_confirmation">
                     <button @click.prevent="mostrarConfirmacaoSenha" id="btn-confirmacao-senha" class="input-group-text">
                         <i class='bx bx-show-alt'></i>
                     </button>

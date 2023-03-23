@@ -19,7 +19,7 @@
               {{ $page.props.auth.user.name }}
               </button>
               <ul class="dropdown-menu dropdown-menu-right">
-                  <li><Link class="dropdown-item" href="#"><i class='bx bx-user me-2'></i>Perfil</Link></li>
+                  <li><Link class="dropdown-item" :href="route('profile.edit')"><i class='bx bx-user me-2'></i>Perfil</Link></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><Link class="dropdown-item" :href="route('inicial.index')"><i class='bx bx-cog me-2'></i>Início</Link></li>
                   <li><hr class="dropdown-divider"></li>

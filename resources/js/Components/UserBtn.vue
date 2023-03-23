@@ -24,7 +24,7 @@
             <li><hr class="dropdown-divider"></li>
             <li><Link class="dropdown-item" :href="route('postagem.create')"><i class='bx bx-edit-alt me-2'></i>Criar publicação</Link></li>
             <li><hr class="dropdown-divider"></li>
-            <Link method="POST" class="dropdown-item" as="button" :href="route('logout')" onclick="location.reload();">
+            <Link method="POST" class="dropdown-item" as="button" :href="route('logout')" @click="location.reload();">
                 <i class="bx bx-power-off me-2"></i>
                 <span class="align-middle">Sair</span>
             </Link>
