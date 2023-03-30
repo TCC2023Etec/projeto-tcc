@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('ativo')->after('tipo');
+            $table->boolean('ativo')->after('tipo')->default(true);
         });
 
         Schema::table('postagens', function (Blueprint $table) {
-            $table->boolean('ativo')->after('user_id');
+            $table->boolean('ativo')->after('user_id')->default(true);
         });
 
         Schema::table('comentarios', function (Blueprint $table) {
-            $table->boolean('ativo')->after('postagem_id');
+            $table->boolean('ativo')->after('postagem_id')->default(true);
         });
     }
 

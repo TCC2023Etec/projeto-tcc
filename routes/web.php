@@ -7,6 +7,7 @@ use App\Http\Controllers\PostagemController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdministradorController;
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Inertia\Inertia;
@@ -37,6 +38,23 @@ Route::prefix('/')->group(function () {
  * Administrador 
  */
 Route::middleware(['auth', CheckUserType::class])->group(function () {
+    /**
+     * Cursos
+     */
+    Route::controller(CursoController::class)->group(function () {
+        Route::get('/cursos', 'index')->name('cursos.index');
+        Route::get('/cursos/novo', 'create')->name('cursos.create');
+        Route::get('/cursos/{curso}', 'show')->name('cursos.show');
+        Route::get('/cursos/editar/{curso}', 'edit')->name('cursos.edit');
+
+        Route::post('/cursos/{curso}', 'update')->name('cursos.update');
+        Route::post('/cursos', 'store')->name('cursos.store');  
+        Route::delete('/curso/{curso}', 'destroy')->name('cursos.destroy');
+    });
+
+    /**
+     * Painel de Controler
+     */
     Route::get('/painel-controle', [AdministradorController::class, 'index'])->name('admin.index');
 });
 
@@ -45,7 +63,7 @@ Route::middleware('auth')->namespace('App\Http\Controllers')->group(function () 
     /**
      * Postagem
      */
-    Route::get('/nova-publicacao', [PostagemController::class, 'create'])->name('postagem.create');
+    Route::get('/nova-publicacao', [PostagemController::class, 'create_postagem'])->name('postagem.create');
     Route::get('/publicacao/{postagem}', [PostagemController::class, 'show'])->name('postagem.show');
     Route::post('/nova-publicacao', [PostagemController::class, 'store'])->name('postagem.store');
 
