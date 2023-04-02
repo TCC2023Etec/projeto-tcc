@@ -22,4 +22,10 @@ class Curso extends Model
     {
         return $date->format('d-m-Y');
     }
+
+    // Relações
+    public function alunos()
+    {
+        return $this->hasMany(User::class);
+    }
 }

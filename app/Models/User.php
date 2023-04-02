@@ -56,6 +56,11 @@ class User extends Authenticatable
      * Relações
      */
 
+    public function curso()
+    {
+        return $this->belongsTo(Curso::class, 'curso_id');
+    }
+
     public function posts()
     {
         return $this->hasMany(Postagem::class);

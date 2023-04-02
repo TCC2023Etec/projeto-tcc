@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Curso;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -21,7 +22,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        $cursos = Curso::all();
+
+        return Inertia::render('Auth/Register', ['cursos' => $cursos]);
     }
 
     /**
@@ -35,15 +38,24 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'tipo' => 'required|in:aluno,professor,administrador'
+            'tipo' => 'required|in:aluno,professor,administrador',
         ]);
 
-        $user = User::create([
+        $user = new User([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'tipo' => $request->tipo
+            'tipo' => $request->tipo,
+            'curso' => $request->curso
         ]);
+
+        if($request->curso) {
+            $curso = Curso::find($request->curso);
+
+            $user->curso()->associate($curso);
+        }        
+
+        $user->save();
 
         event(new Registered($user));
 
