@@ -18,7 +18,8 @@ class UserSeeder extends Seeder
             'name' => 'Mural Aluno',
             'email' => 'mural.aluno@test.com',
             'password' => Hash::make('12345678'),
-            'tipo' => 'aluno'
+            'tipo' => 'aluno',
+            'curso' => 'Técnico em Administração'
         ]);
 
         User::create([
