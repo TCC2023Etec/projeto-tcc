@@ -1,6 +1,6 @@
 <template>
     <div class="card me-1 mb-3" style="width: 18rem;">
-        <Link :href="route('postagem.show', postagem.id)" class="nav-link">
+        <Link :href="route('postagens.show', postagem.id)" class="nav-link">
             <img :src="`storage/postagem/${postagem.imagem}`" class="card-img-top img-fluid rounded mx-auto d-block" alt="Postagem">
             <div class="card-body">
                 <h5 class="card-title">{{ postagem.titulo }}</h5>

@@ -1,47 +1,21 @@
 <template>
-    <div class="wrapper">
-        <div class="sidebar">
-            <!-- conteúdo da sidebar -->
-            <Sidebar />
+    <div class="containter-fluid d-flex flex-column">
+        <div class="mb-5">
+            <SideBarTest />
         </div>
-        <div class="main-content">
-            <div class="header">
-            <!-- conteúdo do header -->
-            <Header />
-            </div>
-            <div class="content">
-            <!-- conteúdo principal -->
+        <div>
             <slot />
-            </div>
         </div>
     </div>
-
 </template>
 
 <script>
-import Header from '@/Components/Header.vue'
-import Sidebar from '@/Components/Sidebar.vue';
+import SideBarTest from '@/Components/SidebarTest.vue';
 
 export default {
     name: 'Layout',
     components: {
-        Header,
-        Sidebar
+        SideBarTest
     }
 }
 </script>
-
-<style>
-/* .wrapper {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  grid-gap: 20px;
-  background-color: #D7D6D6;
-}
-
-.main-content {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-gap: 20px;
-} */
-</style>

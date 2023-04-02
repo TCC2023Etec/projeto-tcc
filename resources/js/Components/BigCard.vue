@@ -2,7 +2,7 @@
       <div v-for="postagem in postagens" class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
-            <Link :href="route('postagem.show', postagem.id)" class="nav-link">
+            <Link :href="route('postagens.show', postagem.id)" class="nav-link">
               <img :src="`storage/postagem/${postagem.imagem}`" class="img-fluid rounded-start" alt="Postagem">
             </Link>
           </div>

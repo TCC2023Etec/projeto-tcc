@@ -22,7 +22,7 @@
         <ul class="dropdown-menu dropdown-menu-right">
             <li><Link class="dropdown-item" :href="route('profile.edit')"><i class='bx bx-user me-2'></i>Perfil</Link></li>
             <li><hr class="dropdown-divider"></li>
-            <li><Link class="dropdown-item" :href="route('postagem.create')"><i class='bx bx-edit-alt me-2'></i>Criar publicação</Link></li>
+            <li><Link class="dropdown-item" :href="route('postagens.store')"><i class='bx bx-edit-alt me-2'></i>Criar publicação</Link></li>
             <li><hr class="dropdown-divider"></li>
             <Link method="POST" class="dropdown-item" as="button" :href="route('logout')" @click="location.reload();">
                 <i class="bx bx-power-off me-2"></i>
@@ -42,7 +42,7 @@
             <li><hr class="dropdown-divider"></li>
             <li><Link class="dropdown-item" :href="route('admin.index')"><i class='bx bx-cog me-2'></i>Painel de Controle</Link></li>
             <li><hr class="dropdown-divider"></li>
-            <li><Link class="dropdown-item" :href="route('postagem.create')"><i class='bx bx-edit-alt me-2'></i>Criar publicação</Link></li>
+            <li><Link class="dropdown-item" :href="route('postagens.store')"><i class='bx bx-edit-alt me-2'></i>Criar publicação</Link></li>
             <li><hr class="dropdown-divider"></li>
             <Link method="POST" class="dropdown-item" as="button" :href="route('logout')">
                 <i class="bx bx-power-off me-2"></i>
@@ -61,7 +61,7 @@
             <li><hr class="dropdown-divider"></li>
             <li><Link class="dropdown-item" :href="route('admin.index')"><i class='bx bx-cog me-2'></i>Painel de Controle</Link></li>
             <li><hr class="dropdown-divider"></li>
-            <li><Link class="dropdown-item" :href="route('postagem.create')"><i class='bx bx-edit-alt me-2'></i>Criar publicação</Link></li>
+            <li><Link class="dropdown-item" :href="route('postagens.store')"><i class='bx bx-edit-alt me-2'></i>Criar publicação</Link></li>
             <li><hr class="dropdown-divider"></li>
             <Link method="POST" class="dropdown-item" as="button" :href="route('logout')">
                 <i class="bx bx-power-off me-2"></i>
