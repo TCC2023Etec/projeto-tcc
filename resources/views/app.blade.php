@@ -14,7 +14,6 @@
         
         <link src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
         <link src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper-base.min.js" integrity="sha384-3DfDNzgngUJS99ed2kb+vxGk7i/o6fHTdV14KcjuTmmZlCQ2hT92i6zLb6KilUeX" crossorigin="anonymous">
-        <link src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-mk0N4BF4hzQ8ZvqwRZ1I+ACxjx+xq3Mu5IdTp9yB+IBykEjK2Fh8Z94RJCTojdl/" crossorigin="anonymous">
 
         {{-- <link rel="stylesheet" href="css/app.css"> --}}
         

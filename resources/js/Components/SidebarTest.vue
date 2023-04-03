@@ -54,11 +54,11 @@
                                 Usuários
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Validar</a></li>
+                                <li><Link class="dropdown-item" href="#">Validar</Link></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Novo usuário</a></li>
+                                <li><Link class="dropdown-item" href="#">Novo usuário</Link></li>
                             </ul>
                         </li>
                         <!-- Cursos -->
@@ -67,11 +67,11 @@
                                 Cursos
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Listar</a></li>
+                                <li><Link class="dropdown-item" :href="route('cursos.index')">Listar</Link></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" :href="route('cursos.create')">Novo curso</a></li>
+                                <li><Link class="dropdown-item" :href="route('cursos.create')">Novo curso</Link></li>
                             </ul>
                         </li>
                     </ul>

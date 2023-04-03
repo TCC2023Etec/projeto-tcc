@@ -1,7 +1,6 @@
 <template>
     <AdminLayout />
     <FormPostagem />
-
 </template>
 
 <script>
