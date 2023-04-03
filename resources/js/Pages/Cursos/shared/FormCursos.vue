@@ -15,6 +15,7 @@
 
                 <div class="col-12">
                     <button class="btn" type="submit" :disabled="form.processing">Enviar</button>
+                    <button class="btn ms-3" @click.prevent="cancelar" :disabled="form.processing">Cancelar</button>
                 </div>
             </div>
     </form>
@@ -48,6 +49,9 @@ export default {
                 _method: 'put',
             });
         },
+        cancelar() {
+            this.$inertia.get(route('cursos.index'));
+        }
     },
     setup () {
         const form = useForm({
