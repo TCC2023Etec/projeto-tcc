@@ -6,6 +6,12 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
+defineProps({
+    cursos: {
+        type: Array
+    },
+});
+
 const form = useForm({
     name: '',
     email: '',
@@ -13,6 +19,7 @@ const form = useForm({
     password_confirmation: '',
     terms: false,
     tipo: '',
+    curso: null,
 });
 
 const submit = () => {
@@ -150,6 +157,16 @@ const mostrarConfirmacaoSenha = () => {
                 <option value="aluno">Aluno</option>
                 <option value="professor">Professor</option>
             </select>
+
+            <div v-if="form.tipo == 'aluno'">
+                <InputLabel for="curso" value="Curso" class="mt-4"/>
+                <select  class="form-select border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" aria-label="Default select example" v-model="form.curso">
+                    <option selected>Selecione seu curso</option>
+                    <option v-for="curso in cursos" :key="curso.id" :value="curso.id">
+                    {{ curso.nome }}
+                    </option>
+                </select>
+            </div>
 
             <div class="flex items-center justify-end mt-4">
                 <Link

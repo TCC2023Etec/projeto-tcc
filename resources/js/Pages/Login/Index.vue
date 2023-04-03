@@ -126,7 +126,7 @@ export default {
     methods: {
         formSubmit() {
             this.form
-            .submit('post', route('postagem.create'), {
+            .submit('post', route('postagens.store'), {
                 _method: 'put',
             });
         },
