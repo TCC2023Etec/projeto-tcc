@@ -5,8 +5,23 @@
             <h3>Menu</h3>
         </div>
       <ul class="d-flex flex-column">
-        <li class="btn_sidebar"><Link href="#">Validar Publicações</Link></li>
-        <li class="btn_sidebar"><Link href="#">Validar Usuários</Link></li>
+        <!-- Validar publicações -->
+        <li class="btn_sidebar nav-item">
+          <button @click.prevent="toggleSubmenu" data-bs-toggle="collapse" data-bs-target="#submenu" aria-expanded="false" aria-controls="submenu">Validar Publicações</button>
+            <ul v-if="isSubmenuOpen" class="nav flex-column">
+              <li class="nav-item ms-3 my-3"><Link href="#">Publicações</Link></li>
+              <li class="nav-item ms-3"><Link href="#">Validar</Link></li>
+            </ul>
+        </li>
+
+        <!-- Cursos -->
+        <li class="btn_sidebar nav-item">
+          <button @click.prevent="toggleSubmenu" data-bs-toggle="collapse" data-bs-target="#submenu" aria-expanded="false" aria-controls="submenu">Cursos</button>
+            <ul v-if="isSubmenuOpen" class="nav flex-column">
+              <li class="nav-item ms-3 my-3"><Link href="#">Publicações</Link></li>
+              <li class="nav-item ms-3"><Link href="#">Validar</Link></li>
+            </ul>
+        </li>
         <li class="btn_sidebar"><Link href="#">Criar Usuários</Link></li>
         <li class="btn_sidebar"><Link href="#">Item 4</Link></li>
         <li class="btn_sidebar"><Link href="#">Item 5</Link></li>
@@ -23,13 +38,13 @@
                   <li><hr class="dropdown-divider"></li>
                   <li><Link class="dropdown-item" :href="route('inicial.index')"><i class='bx bx-cog me-2'></i>Início</Link></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><Link class="dropdown-item" :href="route('postagem.create')"><i class='bx bx-edit-alt me-2'></i>Criar publicação</Link></li>
+                  <li><Link class="dropdown-item" :href="route('postagens.store')"><i class='bx bx-edit-alt me-2'></i>Criar publicação</Link></li>
                   <li><hr class="dropdown-divider"></li>
                   <Link method="POST" class="dropdown-item" as="button" :href="route('logout')">
                       <i class="bx bx-power-off me-2"></i>
                       <span class="align-middle">Sair</span>
                   </Link>
-              </ul>
+              </ul> 
           </div>
         </footer>
     </nav>
@@ -42,7 +57,17 @@ export default {
     name: "Sidebar",
     components: {
       Link
-    }
+    },
+    data() {
+      return {
+        isSubmenuOpen: false
+      }
+    },
+    methods: {
+      toggleSubmenu() {
+        this.isSubmenuOpen = !this.isSubmenuOpen;
+      }
+  }
 }
 </script>
 
@@ -117,5 +142,9 @@ export default {
 
 .sidebar footer p {
   margin: 0;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
