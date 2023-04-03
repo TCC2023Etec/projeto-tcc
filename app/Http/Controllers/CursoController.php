@@ -37,7 +37,7 @@ class CursoController extends Controller
         $curso->duracao = $request->duracao;
         $curso->save();
 
-        return redirect()->route('cursos.index')->with('Curso cadastrado com sucesso!');
+        return redirect()->route('cursos.index')->with('mensagem','Curso cadastrado com sucesso!');
         // return response()->json([
         //     'mensagem' => "Curso cadastrado" 
         // ]);
@@ -49,7 +49,7 @@ class CursoController extends Controller
 
         $curso->update($data);
 
-        return redirect()->route('cursos.show', $curso->id)->with('Curso atualizado com sucesso!');
+        return redirect()->route('cursos.show', $curso->id)->with('mensagem','Curso atualizado com sucesso!');
         // return response()->json([
         //     'mensagem' => "Curso atualizado" 
         // ]);
@@ -59,7 +59,7 @@ class CursoController extends Controller
     {
         $curso->delete();
 
-        return redirect()->route('cursos.index')->with('Curso excluído com sucesso!');
+        return redirect()->route('cursos.index')->with('mensagem','Curso excluído com sucesso!');
         // return response()->json([
         //     'mensagem' => "Curso deletado" 
         // ]);
