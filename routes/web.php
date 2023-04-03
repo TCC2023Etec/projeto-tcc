@@ -63,9 +63,9 @@ Route::middleware('auth')->namespace('App\Http\Controllers')->group(function () 
     /**
      * Postagem
      */
-    Route::get('/nova-publicacao', [PostagemController::class, 'create_postagem'])->name('postagem.create');
-    Route::get('/publicacao/{postagem}', [PostagemController::class, 'show'])->name('postagem.show');
-    Route::post('/nova-publicacao', [PostagemController::class, 'store'])->name('postagem.store');
+    Route::get('/nova-publicacao', [PostagemController::class, 'create_postagem'])->name('postagens.store');
+    Route::get('/publicacao/{postagem}', [PostagemController::class, 'show'])->name('postagens.show');
+    Route::post('/nova-publicacao', [PostagemController::class, 'store'])->name('postagens.store');
 
     /**
      * Profile
