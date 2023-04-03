@@ -9,7 +9,13 @@ class CursoController extends Controller
 {
     public function index()
     {
-        $cursos = Curso::all();
+        $buscaCurso = request('search');
+
+        if($buscaCurso) {
+            $cursos = Curso::where('nome', 'like', '%' . $buscaCurso . '%')->get();
+        } else {
+            $cursos = Curso::all();
+        }
 
         return inertia('Cursos/Index', ['cursos' => $cursos]);
     }
