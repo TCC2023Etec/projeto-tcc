@@ -154,8 +154,8 @@ const mostrarConfirmacaoSenha = () => {
             <InputLabel for="password_confirmation" value="Tipo" class="mt-4"/>
             <select class="form-select border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" aria-label="Default select example" v-model="form.tipo">
                 <option selected>Selecione o tipo de cadastro</option>
-                <option value="aluno">Aluno</option>
                 <option value="professor">Professor</option>
+                <option value="aluno">Aluno</option>
             </select>
 
             <div v-if="form.tipo == 'aluno'">
