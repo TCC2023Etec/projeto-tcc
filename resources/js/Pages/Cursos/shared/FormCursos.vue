@@ -14,8 +14,8 @@
                 </div>
 
                 <div class="col-12">
-                    <button class="btn" type="submit" :disabled="form.processing">Enviar</button>
-                    <button class="btn ms-3" @click.prevent="cancelar" :disabled="form.processing">Cancelar</button>
+                    <button class="btn btn-primary" type="submit" :disabled="form.processing">Salvar</button>
+                    <button class="btn btn-danger ms-3" @click.prevent="cancelar" :disabled="form.processing">Cancelar</button>
                 </div>
             </div>
     </form>
@@ -72,14 +72,8 @@ export default {
 </script>
 
 <style>
-.btn {
-    background-color: #b20000;
-    border: none;
-    color: #fff;
-}
-
 .form {
-    border: 1px solid blue;
+    border: 1px solid red;
 
     width: 90%;
     margin: auto;

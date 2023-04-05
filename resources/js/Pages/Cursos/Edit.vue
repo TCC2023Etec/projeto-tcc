@@ -1,8 +1,8 @@
 <template>
     <layout>
         <h4 class="fw-bold py-3 mb-4">
-            <span class="text-muted fw-light">Editar/</span>
-            #{{ curso.id + ' - ' + curso.nome}}
+            <span class="text-muted fw-light">Editar/Curso</span>
+            #{{ curso.nome }}
         </h4>
 
         <FormCursos metodo="put" :rota="rota" :curso="curso"></FormCursos>

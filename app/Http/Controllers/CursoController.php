@@ -10,14 +10,25 @@ class CursoController extends Controller
     public function index()
     {
         $buscaCurso = request('search');
+        $msg = '';
 
         if($buscaCurso) {
             $cursos = Curso::where('nome', 'like', '%' . $buscaCurso . '%')->get();
+
+            // Se não retornar nenhum resultado
+            if ($cursos->count() == 0) {
+                $msg = "Não encontramos resultado para a pesquisa: " . $buscaCurso;
+            } else {
+                $msg = "Buscando por: " . $buscaCurso;
+            }
+            
         } else {
             $cursos = Curso::all();
+
+            $msg = $buscaCurso;
         }
 
-        return inertia('Cursos/Index', ['cursos' => $cursos]);
+        return inertia('Cursos/Index', ['cursos' => $cursos, 'msg' => $msg]);
     }
 
     public function create()
@@ -55,7 +66,7 @@ class CursoController extends Controller
 
         $curso->update($data);
 
-        return redirect()->route('cursos.show', $curso->id)->with('mensagem','Curso atualizado com sucesso!');
+        return redirect()->route('cursos.index')->with('mensagem','Curso atualizado com sucesso!');
         // return response()->json([
         //     'mensagem' => "Curso atualizado" 
         // ]);
