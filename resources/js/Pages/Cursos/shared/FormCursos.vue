@@ -24,7 +24,6 @@
 
 <script>
 import { useForm } from '@inertiajs/vue3';
-import AdminLayout from '@/Layouts/Admin.vue';
 import MensagemErro from '@/Components/MensagemErro.vue';
 
 export default {
@@ -36,10 +35,8 @@ export default {
     props: {
         curso: Object,
         rota: String,
-        metodo: String
     },
     components: {
-        AdminLayout,
         MensagemErro
     },
     methods: {
@@ -53,19 +50,18 @@ export default {
             this.$inertia.get(route('cursos.index'));
         }
     },
-    setup () {
+    setup (props) {
         const form = useForm({
             id: null,
             nome: '',
             duracao: ''
         });
 
+        form.id = props.curso.id ?? null;
+        form.nome = props.curso.nome ?? '';
+        form.duracao = props.curso.duracao ?? '';
+
         return { form };
-    },
-    mounted() {
-        this.form.id = this.curso.id ?? null;
-        this.form.nome = this.curso.nome ?? '';
-        this.form.duracao = this.curso.duracao ?? '';
     }
 }
 

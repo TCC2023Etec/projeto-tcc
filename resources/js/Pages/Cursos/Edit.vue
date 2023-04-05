@@ -5,7 +5,7 @@
             #{{ curso.nome }}
         </h4>
 
-        <FormCursos metodo="put" :rota="rota" :curso="curso"></FormCursos>
+        <FormCursos :rota="rota" :curso="curso" />
     </layout>
 
 </template>
