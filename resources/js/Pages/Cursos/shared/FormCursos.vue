@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="col-12">
-                    <button class="btn btn-primary" type="submit" :disabled="form.processing">Salvar</button>
+                    <button class="btn btn-primary bg-primary" type="submit" :disabled="form.processing">Salvar</button>
                     <button class="btn btn-danger ms-3" @click.prevent="cancelar" :disabled="form.processing">Cancelar</button>
                 </div>
             </div>
