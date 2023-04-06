@@ -6,7 +6,7 @@
 
 <script>
 import { useForm } from '@inertiajs/vue3';
-import SideBarTest from '@/Components/SidebarTest.vue';
+import SideBar from '@/Components/Sidebar.vue';
 import FormCursos from './shared/FormCursos.vue';
 import Layout from '@/Layouts/Layout.vue'
 
@@ -23,7 +23,7 @@ export default {
         }
     },
     components: {
-        SideBarTest,
+        SideBar,
         FormCursos,
         Layout
     },  

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Inertia\Inertia;
 
@@ -56,6 +57,18 @@ Route::middleware(['auth', CheckUserType::class])->group(function () {
      * Painel de Controler
      */
     Route::get('/painel-controle', [AdministradorController::class, 'index'])->name('admin.index');
+
+    // Usuários
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/usuarios', 'index')->name('user.index');
+        Route::get('/usuario/novo', 'create')->name('user.create');
+        Route::get('/usuario/{usuario}', 'show')->name('user.show');
+        Route::get('/usuarios/editar/{usuario}', 'edit')->name('user.edit');
+
+        Route::post('/usuario/editar/{usuario}', 'update')->name('user.update');
+        Route::post('/usuarios', 'store')->name('user.store');
+        Route::delete('/usuario{usuario}', 'destroy')->name('user.destroy');
+    });
 });
 
 

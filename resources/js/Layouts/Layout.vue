@@ -2,7 +2,7 @@
     <div class="containter-fluid d-flex flex-column">
         
         <div class="mb-5">
-            <SideBarTest />
+            <SideBar />
             <div v-if="$page.props.flash.mensagem" class="toast align-items-center p-1 mb-4 text-sm bg-green-300 toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body">
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import SideBarTest from '@/Components/SidebarTest.vue';
+import SideBar from '@/Components/Sidebar.vue';
 
 export default {
     name: 'Layout',
     components: {
-        SideBarTest
+        SideBar
     }
 }
 </script>
