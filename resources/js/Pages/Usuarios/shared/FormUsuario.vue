@@ -4,13 +4,13 @@
             <div class="row">
                 <div class="mb-4 border border-0 col-6">
                     <label for="Nome">Nome</label>
-                    <input type="text" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInput" placeholder="Nome" v-model="form.name">
+                    <input type="text" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInputNome" placeholder="Nome" v-model="form.name">
                     <MensagemErro :mensagem="form.errors.name"/>
                 </div>
                 
                 <div class="mb-4 col-6">
                     <label for="descricao">E-mail</label>
-                    <input type="text" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInput" placeholder="E-mail" v-model="form.email" />
+                    <input type="text" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInputEmail" placeholder="E-mail" v-model="form.email" />
                     <MensagemErro :mensagem="form.errors.email"/>
                 </div>
             </div>
@@ -18,13 +18,23 @@
             <div class="row">
                 <div class="mb-4 col-6">
                     <label for="descricao">Senha</label>
-                    <input type="password" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInput" placeholder="Senha" v-model="form.password" />
+                    <div class="input-group">
+                        <input type="password" class="form-control shadow-sm bg-body-tertiary rounded senha" id="floatingInputSenha" placeholder="Senha" v-model="form.password" />
+                        <button @click.prevent="mostrarSenha" id="btn-senha" class="input-group-text">
+                            <i class='bx bx-show-alt'></i>
+                        </button>
+                    </div>
                     <MensagemErro :mensagem="form.errors.password"/>
                 </div>
                 
                 <div class="mb-4 col-6">
                     <label for="descricao">Confirme a senha</label>
-                    <input type="password" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInput" placeholder="Confirme sua senha" v-model="form.password_confirmation" />
+                    <div class="input-group">
+                        <input type="password" class="form-control shadow-sm bg-body-tertiary rounded confirmaca_senha" id="floatingInputConfirmacaoSenha" placeholder="Confirme sua senha" v-model="form.password_confirmation" />
+                        <button @click.prevent="mostrarConfirmacaoSenha" id="btn-confirmacao-senha" class="input-group-text">
+                            <i class='bx bx-show-alt'></i>
+                        </button>
+                    </div>
                     <MensagemErro :mensagem="form.errors.password_confirmation"/>
                 </div>
             </div>
@@ -32,7 +42,7 @@
             <div class="row">
                 <div class="mb-4 col-6">
                     <label for="floatingSelect">Selecione o tipo de usuário</label>
-                    <select class="form-select shadow-sm bg-body-tertiary rounded" id="floatingSelect" aria-label="Floating label select example" v-model="form.tipo">
+                    <select class="form-select shadow-sm bg-body-tertiary rounded" id="floatingSelectTipo" aria-label="Floating label select example" v-model="form.tipo">
                         <option selected>Selecione o tipo de usuário</option>
                         <option value="administrador">Administrador</option>
                         <option value="professor">Professor</option>
@@ -42,7 +52,7 @@
                 
                 <div v-if="form.tipo == 'aluno'" class="mb-4 col-6">
                     <label for="floatingSelect">Selecione o curso</label>
-                    <select class="form-select shadow-sm bg-body-tertiary rounded" id="floatingSelect" aria-label="Floating label select example" v-model="form.curso">
+                    <select class="form-select shadow-sm bg-body-tertiary rounded" id="floatingSelectCurso" aria-label="Floating label select example" v-model="form.curso">
                         <option selected>Selecione seu curso</option>
                         <option v-for="curso in cursos" :key="curso.id" :value="curso.id">
                             {{ curso.nome }}
@@ -87,6 +97,38 @@ export default {
         },
         cancelar() {
             this.$inertia.get(route('user.index'));
+        },
+        mostrarSenha() {
+            var senhaInput = document.querySelector('.senha');
+            var icone = document.querySelector('#btn-senha i');
+
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+                // btn.textContent = "Esconder senha";
+                icone.classList.remove('bx-show-alt');
+                icone.classList.add('bx-hide')
+            } else {
+                senhaInput.type = "password";
+                // btn.textContent = "Mostrar senha";
+                icone.classList.remove('bx-hide');
+                icone.classList.add('bx-show-alt')
+            }
+        },
+        mostrarConfirmacaoSenha() {
+            var senhaInput = document.querySelector('.confirmaca_senha');
+            var icone = document.querySelector('#btn-confirmacao-senha i');
+
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+                // btn.textContent = "Esconder senha";
+                icone.classList.remove('bx-show-alt');
+                icone.classList.add('bx-hide')
+            } else {
+                senhaInput.type = "password";
+                // btn.textContent = "Mostrar senha";
+                icone.classList.remove('bx-hide');
+                icone.classList.add('bx-show-alt')
+            }
         }
     },
     setup (props) {
@@ -98,7 +140,7 @@ export default {
             password_confirmation: '',
             terms: false,
             tipo: '',
-            curso: null,
+            curso: '',
         });
 
         form.id = props.usuario.id ?? null;

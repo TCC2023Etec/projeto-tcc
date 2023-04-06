@@ -5,10 +5,13 @@
                 <input type="text" v-model="buscaCurso" @change="pesquisar" placeholder="Pesquisar cursos...">
                 <button class="btn btn-outline-secondary" type="button" id="button-pesquisar"><i class='bx bx-search'></i></button>
             </div>
-            <Link :href="route('cursos.create')" as="button" class="btn rounded-pill btn-primary">
+            <!-- <Link :href="route('cursos.create')" as="button" class="btn rounded-pill btn-primary">
                 <span class="tf-icons bx bx-plus-circle"></span> Novo Curso
-            </Link>
+            </Link> -->
+            <modalFormCursos :rota="rota" :curso="curso"/>
         </div>
+
+
         <div class="row">
             <div v-if="msg" class="col">
                 <p class="text-muted mb-3">{{ msg }}</p>
@@ -43,19 +46,25 @@
 <script>
 import Layout from '@/Layouts/Layout.vue';
 import { Link } from '@inertiajs/vue3';
+import modalFormCursos from './shared/ModalFormCursos.vue';
 
 export default {
     name: 'Index',
     data() {
         return {
             buscaCurso: '',
-            nomePesquisa: '',
-            resultadoPesquisa: '',
+            rota: route('cursos.store'),
+            curso: {
+                id: null,
+                nome: '',
+                duracao: ''
+            }
         }
     },
     components: {
         Layout,
-        Link
+        Link,
+        modalFormCursos
     },
     props: {
         cursos: {

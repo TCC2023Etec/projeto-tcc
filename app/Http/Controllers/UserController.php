@@ -21,11 +21,29 @@ class UserController extends Controller
 
     public function index()
     {
-        $usuarios = User::all();
+        $buscaUsuario = request('search');
+        $msg = '';
 
-        $usuarios->load('curso');
+        if($buscaUsuario) {
+            $usuarios = User::where('name', 'like', '%' . $buscaUsuario . '%')
+            ->orWhere('tipo', 'like', "%{$buscaUsuario}%")->get();
 
-        return inertia('Usuarios/Index', ['usuarios' => $usuarios]);
+            $usuarios->load('curso');
+
+            // Se não retornar nenhum resultado
+            if ($usuarios->count() == 0) {
+                $msg = "Não encontramos resultado para a pesquisa: " . $buscaUsuario;
+            } else {
+                $msg = "Buscando por: " . $buscaUsuario;
+            }
+            
+        } else {
+            $usuarios = User::all();
+
+            $usuarios->load('curso');
+        }
+
+        return inertia('Usuarios/Index', ['usuarios' => $usuarios, 'msg' => $msg]);
     }
 
     public function edit(User $usuario)

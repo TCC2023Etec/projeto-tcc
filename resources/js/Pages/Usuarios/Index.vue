@@ -1,18 +1,21 @@
 <template>
     <Layout>
-        <div class="d-flex flex-row mb-3">
-            <div class="input-group w-60 me-3">
-                <input type="text" v-model="buscaCurso" @change="pesquisar" placeholder="Pesquisar cursos...">
-                <button class="btn btn-outline-secondary" type="button" id="button-pesquisar"><i class='bx bx-search'></i></button>
+        <div class="d-flex flex-column mb-3">
+            <div class="d-flex flex-row">
+                <div class="input-group w-60 me-3">
+                    <input type="text" v-model="buscaUsuario" @change="pesquisar" placeholder="Pesquisar usuário...">
+                    <button class="btn btn-outline-secondary" type="button" id="button-pesquisar"><i class='bx bx-search'></i></button>
+                </div>
+                <Link :href="route('user.create')" as="button" class="btn rounded-pill btn-primary">
+                    <span class="tf-icons bx bx-plus-circle"></span> Novo Usuário
+                </Link>
             </div>
-            <Link :href="route('user.create')" as="button" class="btn rounded-pill btn-primary">
-                <span class="tf-icons bx bx-plus-circle"></span> Novo Usuário
-            </Link>
-        </div>
-        <div class="row">
-            <div v-if="msg" class="col">
-                <p class="text-muted mb-3">{{ msg }}</p>
-                <button class="btn btn-secondary" @click.prevent="limparPesquisa">Limpar Pesquisa</button>
+            <p v-if="!msg" class="text-muted">Pesquise por: nome ou tipo</p>
+            <div v-if="msg" class="row">
+                <div  class="col">
+                    <p class="text-muted mb-3">{{ msg }}</p>
+                    <button class="btn btn-secondary" @click.prevent="limparPesquisa">Limpar Pesquisa</button>
+                </div>
             </div>
         </div>
         <table class="table  table-striped table-hover table-responsive">
@@ -21,6 +24,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     <th scope="col">E-mail</th>
+                    <th scope="col">Tipo</th>
                     <th scope="col">Curso</th>
                 </tr>
             </thead>
@@ -50,7 +54,7 @@ export default {
     name: 'Index',
     data() {
         return {
-            buscaCurso: '',
+            buscaUsuario: '',
         }
     },
     components: {
@@ -59,7 +63,7 @@ export default {
     },
     props: {
         usuarios: {
-            type: Object,
+            type: Array,
         },
         msg: String
     },
@@ -72,16 +76,16 @@ export default {
             }
         },
         pesquisar() {
-            if (this.buscaCurso !== '') {
-                this.$inertia.get(route('cursos.index', {
-                    search: this.buscaCurso
+            if (this.buscaUsuario !== '') {
+                this.$inertia.get(route('user.index', {
+                    search: this.buscaUsuario
                 }));
             } else {
-                this.$inertia.get(route('cursos.index'));
+                this.$inertia.get(route('user.index'));
             }
         },
         limparPesquisa() {
-            this.$inertia.get(route('cursos.index'));
+            this.$inertia.get(route('user.index'));
         }
     }
 }
