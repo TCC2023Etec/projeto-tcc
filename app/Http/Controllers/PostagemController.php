@@ -51,4 +51,29 @@ class PostagemController extends Controller
     {
         return inertia('Postagem/Show', ['postagem' => $postagem]);
     }
+
+    public function lista_aprova_postagem ()
+    {
+        $postagens = Postagem::where('situacao', null)->get();
+
+        $numPostagens = $postagens->count();
+
+        $postagens->load('usuario');
+
+        return inertia('Postagem/Validacao', ['postagens' => $postagens, 'numPostagens' => $numPostagens]);
+    }
+
+    public function postagem_aprovada(Postagem $postagem)
+    {
+        $postagem->aprovado();
+
+        return redirect()->back()->with('mensagem', 'Postagem aprovada com sucesso!');
+    }
+
+    public function postagem_negada(Postagem $postagem)
+    {
+        $postagem->reprovado();
+
+        return redirect()->back()->with('mensagem', 'Postagem reprovada com sucesso!');
+    }
 }

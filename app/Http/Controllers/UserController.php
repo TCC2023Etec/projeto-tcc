@@ -72,7 +72,8 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'tipo' => $request->tipo,
-            'curso' => $request->curso
+            'curso' => $request->curso,
+            'situacao' => 'aprovado'
         ]);
 
         if($request->curso) {
@@ -80,7 +81,7 @@ class UserController extends Controller
 
             $user->curso()->associate($curso);
         }        
-
+        
         $user->save();
 
         event(new Registered($user));
@@ -100,5 +101,30 @@ class UserController extends Controller
     public function destroy()
     {
 
+    }
+
+    public function lista_aprova_usuario ()
+    {
+        $usuarios = User::where('situacao', null)->get();
+
+        $numUsuarios = $usuarios->count();
+
+        $usuarios->load('curso');
+
+        return inertia('Usuarios/Validacao', ['usuarios' => $usuarios, 'numUsuarios' => $numUsuarios]);
+    }
+
+    public function usuario_aprovado(User $usuario)
+    {
+        $usuario->aprovado();
+
+        return redirect()->back()->with('mensagem', 'Usuário aprovado com sucesso!');
+    }
+
+    public function usuario_negado(User $user)
+    {
+        $user->reprovado();
+
+        return redirect()->back()->with('mensagem', 'Usuário reprovado com sucesso!');
     }
 }

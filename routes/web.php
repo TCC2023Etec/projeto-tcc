@@ -64,11 +64,23 @@ Route::middleware(['auth', CheckUserType::class])->group(function () {
         Route::get('/usuario/novo', 'create')->name('user.create');
         Route::get('/usuario/{usuario}', 'show')->name('user.show');
         Route::get('/usuarios/editar/{usuario}', 'edit')->name('user.edit');
+        Route::get('/usuarios/aprova', 'lista_aprova_usuario')->name('user.aprova');
 
+        Route::post('/usuarios/aprovado/{usuario}', 'usuario_aprovado')->name('user.aprovado');
+        Route::post('/usuarios/negado/{usuario}', 'usuario_negado')->name('user.negado');
         Route::post('/usuario/editar/{usuario}', 'update')->name('user.update');
         Route::post('/usuarios', 'store')->name('user.store');
         Route::delete('/usuario{usuario}', 'destroy')->name('user.destroy');
     });
+
+    // Postagens no Painel de Controle
+    Route::controller(PostagemController::class)->group(function () {
+        Route::get('/postagens/aprova', 'lista_aprova_postagem')->name('postagens.aprova');
+
+        Route::post('/postagens/aprovada/{postagem}', 'postagem_aprovada')->name('postagens.aprovada');
+        Route::post('/postagens/negada/{postagem}', 'postagem_negada')->name('postagens.negada');
+    });
+    
 });
 
 

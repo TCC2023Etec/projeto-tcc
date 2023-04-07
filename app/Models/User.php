@@ -24,7 +24,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'tipo'
+        'tipo',
+        'situacao'
     ];
 
     /**
@@ -66,5 +67,17 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Postagem::class);
+    }
+
+    public function aprovado()
+    {
+        $this->situacao = 'aprovado';
+        $this->save();
+    }
+
+    public function reprovado()
+    {
+        $this->situacao = 'reprovado';
+        $this->save();
     }
 }

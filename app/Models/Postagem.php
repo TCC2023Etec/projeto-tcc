@@ -29,4 +29,16 @@ class Postagem extends Model
     {
         return $date->format('d-m-Y');
     }
+
+    public function aprovado()
+    {
+        $this->situacao = 'aprovado';
+        $this->save();
+    }
+
+    public function reprovado()
+    {
+        $this->situacao = 'reprovado';
+        $this->save();
+    }
 }

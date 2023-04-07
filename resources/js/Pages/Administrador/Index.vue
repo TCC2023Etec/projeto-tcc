@@ -8,7 +8,18 @@
                 <p>No Menu ao lado você encontrará todas as funcionalidades do sistema.</p>
                 <p>Para eventuais dúvidas ou problemas durante o uso, entre em contato com o suporte.</p>
             </div>
-            <div class="card-footer bg-transparent border-secondary">&copy; Mural Etec</div>
+        </div>
+
+        <div class="card border-secondary mb-3">
+            <div class="card-header bg-transparent border-secondary">Quadro de avisos</div>
+            <div class="card-body">
+                <div v-if="numUsuarios">
+                    Usuários aguardando aprovação: {{ numUsuarios }}
+                </div>
+                <div v-if="numPostagens">
+                    Postagens aguardando aprovação: {{ numPostagens }}
+                </div>
+            </div>
         </div>
     </Layout>
 </template>
@@ -22,6 +33,10 @@ export default {
     components: {
         SideBar,
         Layout
+    },
+    props: {
+        numUsuarios: Number,
+        numPostagens: Number,
     }
 }
 </script>

@@ -6,7 +6,7 @@
             </button>
             
             <!-- <a class="navbar-brand" href="#">Mural Etec</a> -->
-            <div class="dropdown">
+            <div v-if="usuarioLogado" class="dropdown">
                 <button class="btn btn-secondary btn-l dropdown-toggle border border-0 dropstart me-5 texto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class='bx bx-user'></i>
                     {{ usuarioLogado.name }}
@@ -33,7 +33,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-1">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Início</a>
+                            <a class="nav-link active" aria-current="page" :href="route('admin.index')">Início</a>
                         </li>
                         <!-- Publicações -->
                         <li class="nav-item dropdown">
@@ -41,7 +41,7 @@
                                 Publicações
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Validar</a></li>
+                                <li><a class="dropdown-item" :href="route('postagens.aprova')">Validar</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -58,7 +58,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><Link class="dropdown-item" href="#">Validar</Link></li>
+                                <li><Link class="dropdown-item" :href="route('user.aprova')">Validar</Link></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
