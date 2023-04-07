@@ -10,11 +10,12 @@ use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use Illuminate\Foundation\Application;
 use Inertia\Inertia;
 
 // Middleware
 use App\Http\Middleware\CheckUserType;
+use App\Http\Middleware\VerificarSituacaoUsuario;
+
 
 /**
  * Login
@@ -25,12 +26,10 @@ Route::prefix('login')->group(function () {
     Route::post('/', [LoginController::class, 'store'])->name('login.store');
 });
 
-
-/**
- * Tela inicial
- */
-Route::prefix('/')->group(function () {
-    Route::get('/', [InicialController::class, 'index'])->name('inicial.index');
+// Telas iniciais que não precisam de autenticação
+Route::controller(InicialController::class)->group(function () {
+    Route::get('/', 'index')->name('inicial.index');
+    Route::get('/aguardando-validacao', 'aguardando_validacao')->name('aguardando-validacao');
 });
 
 
@@ -38,7 +37,7 @@ Route::prefix('/')->group(function () {
 /**
  * Administrador 
  */
-Route::middleware(['auth', CheckUserType::class])->group(function () {
+Route::middleware(['auth', 'verSituacao', CheckUserType::class])->group(function () {
     /**
      * Cursos
      */
@@ -84,7 +83,7 @@ Route::middleware(['auth', CheckUserType::class])->group(function () {
 });
 
 
-Route::middleware('auth')->namespace('App\Http\Controllers')->group(function () {    
+Route::middleware(['auth', 'verSituacao'])->namespace('App\Http\Controllers')->group(function () {    
     /**
      * Postagem
      */

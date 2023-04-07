@@ -6,9 +6,6 @@
                     <input type="text" v-model="buscaUsuario" @change="pesquisar" placeholder="Pesquisar usuário...">
                     <button class="btn btn-outline-secondary" type="button" id="button-pesquisar"><i class='bx bx-search'></i></button>
                 </div>
-                <Link :href="route('user.create')" as="button" class="btn rounded-pill btn-primary">
-                    <span class="tf-icons bx bx-plus-circle"></span> Novo Usuário
-                </Link>
             </div>
             <p v-if="!msg" class="text-muted">Pesquise por: nome ou tipo</p>
             <div v-if="msg" class="row">
@@ -69,15 +66,15 @@ props: {
 methods: {
     pesquisar() {
         if (this.buscaUsuario !== '') {
-            this.$inertia.get(route('user.index', {
+            this.$inertia.get(route('postagens.aprova', {
                 search: this.buscaUsuario
             }));
         } else {
-            this.$inertia.get(route('user.index'));
+            this.$inertia.get(route('postagens.aprova'));
         }
     },
     limparPesquisa() {
-        this.$inertia.get(route('user.index'));
+        this.$inertia.get(route('postagens.aprova'));
     },
     aprovarPostagem(postagem) {
         if (confirm('Deseja aprovar essa postagem?')) {

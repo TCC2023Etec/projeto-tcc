@@ -17,7 +17,7 @@
 import Navbar from '../Components/Navbar.vue';
 import SmallCard from '@/Components/SmallCard.vue';
 import BigCard from '@/Components/BigCard.vue';
-import AdminLayout from '@/Layouts/Admin.vue'
+import AdminLayout from '@/Layouts/Admin.vue';
 
 export default {
     name: 'Home',

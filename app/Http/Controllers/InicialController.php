@@ -11,12 +11,15 @@ class InicialController extends Controller
 {
     public function index()
     {
-        $postagens = Postagem::all();
+        $postagens = Postagem::where('situacao', 'aprovado')->get();
 
         $postagens->load('usuario');
 
         return inertia('Home', ['postagens' => $postagens]);
     }
 
-    
+    public function aguardando_validacao()
+    {
+        return inertia('AguardandoAprova');
+    }
 }

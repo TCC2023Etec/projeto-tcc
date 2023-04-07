@@ -33,6 +33,9 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-1">
                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" :href="route('inicial.index')">Tela inicial</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" :href="route('admin.index')">Início</a>
                         </li>
                         <!-- Publicações -->
