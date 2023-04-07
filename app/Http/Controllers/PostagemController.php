@@ -65,6 +65,8 @@ class PostagemController extends Controller
 
     public function postagem_aprovada(Postagem $postagem)
     {
+        $this->authorize('validar', $postagem);
+
         $postagem->aprovado();
 
         return redirect()->back()->with('mensagem', 'Postagem aprovada com sucesso!');

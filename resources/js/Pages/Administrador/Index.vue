@@ -13,7 +13,7 @@
         <div class="card border-secondary mb-3">
             <div class="card-header bg-transparent border-secondary">Quadro de avisos</div>
             <div class="card-body">
-                <div v-if="numUsuarios">
+                <div v-if="numUsuarios && usuarioLogado.tipo == 'administrador'">
                     Usuários aguardando aprovação: {{ numUsuarios }}
                 </div>
                 <div v-if="numPostagens">
@@ -37,6 +37,11 @@ export default {
     props: {
         numUsuarios: Number,
         numPostagens: Number,
+    },
+    data() {
+        return {
+            usuarioLogado: this.$page.props.auth.user
+        }
     }
 }
 </script>

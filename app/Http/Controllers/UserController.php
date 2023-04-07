@@ -9,11 +9,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class UserController extends Controller
 {
     public function create()
     {
+        $this->authorize('create', User::class);
+        
         $cursos = Curso::all();
 
         return inertia('Usuarios/Create', ['cursos' => $cursos]);
@@ -21,6 +24,8 @@ class UserController extends Controller
 
     public function index()
     {
+        $this->authorize('viewAny', User::class);
+
         $buscaUsuario = request('search');
         $msg = '';
 
@@ -48,6 +53,8 @@ class UserController extends Controller
 
     public function edit(User $usuario)
     {
+        $this->authorize('update', $usuario);
+
         $cursos = Curso::all();
 
         return inertia('Usuarios/Edit', ['usuario' => $usuario, 'cursos' => $cursos]);
@@ -60,6 +67,8 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('create', User::class);
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:'.User::class,
@@ -91,6 +100,8 @@ class UserController extends Controller
     
     public function update(User $user, Request $request)
     {
+        $this->authorize('update', $user);
+
         $data = $request->all();
 
         $user->update($data);
@@ -105,6 +116,8 @@ class UserController extends Controller
 
     public function lista_aprova_usuario ()
     {
+        $this->authorize('viewAny', User::class);
+
         $usuarios = User::where('situacao', null)->get();
 
         $numUsuarios = $usuarios->count();
@@ -116,6 +129,8 @@ class UserController extends Controller
 
     public function usuario_aprovado(User $usuario)
     {
+        $this->authorize('validar', $usuario);
+
         $usuario->aprovado();
 
         return redirect()->back()->with('mensagem', 'Usuário aprovado com sucesso!');
@@ -123,6 +138,8 @@ class UserController extends Controller
 
     public function usuario_negado(User $user)
     {
+        $this->authorize('validar', $user);
+
         $user->reprovado();
 
         return redirect()->back()->with('mensagem', 'Usuário reprovado com sucesso!');
