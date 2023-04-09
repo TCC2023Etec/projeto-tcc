@@ -23,9 +23,9 @@ const form = useForm({
         <header>
             <h2 class="text-lg font-medium text-gray-900">Informações do Perfil</h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <!-- <p class="mt-1 text-sm text-gray-600">
                 Atualize suas informações da conta e endereço de email
-            </p>
+            </p> -->
         </header>
 
         <form @submit.prevent="form.patch(route('profile.update'))" class="mt-6 space-y-6">
@@ -37,7 +37,6 @@ const form = useForm({
                     type="text"
                     class="mt-1 block w-full"
                     v-model="form.name"
-                    required
                     autofocus
                     autocomplete="name"
                     readonly
@@ -56,6 +55,7 @@ const form = useForm({
                     v-model="form.email"
                     required
                     autocomplete="username"
+                    readonly
                 />
 
                 <InputError class="mt-2" :message="form.errors.email" />
@@ -82,13 +82,14 @@ const form = useForm({
                 </div>
             </div>
 
-            <div class="flex items-center gap-4">
+            <!-- Botão para salvar alterações -->
+            <!-- <div class="flex items-center gap-4">
                 <PrimaryButton :disabled="form.processing">Salvar</PrimaryButton>
 
                 <Transition enter-from-class="opacity-0" leave-to-class="opacity-0" class="transition ease-in-out">
                     <p v-if="form.recentlySuccessful" class="text-sm text-gray-600">Salvo.</p>
                 </Transition>
-            </div>
+            </div> -->
         </form>
     </section>
 </template>
