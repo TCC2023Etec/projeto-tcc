@@ -18,7 +18,7 @@ class AdministradorController extends Controller
         if ($countUsuarios > 0) {
             $numUsuarios = $countUsuarios;
         } else if ($countUsuarios == 0) {
-            $numUsuarios = '';
+            $numUsuarios = 0;
         }
 
         // Retorna as postagens que ainda não tiveram sua "situação" modificada
@@ -29,7 +29,7 @@ class AdministradorController extends Controller
         if ($countPostagens > 0) {
             $numPostagens = $countPostagens;
         } else if ($countPostagens == 0) {
-            $numPostagens = '';
+            $numPostagens = 0;
         }
 
         return inertia('Administrador/Index', ['numUsuarios' => $numUsuarios, 'numPostagens' => $numPostagens]);

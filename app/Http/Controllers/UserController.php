@@ -136,11 +136,11 @@ class UserController extends Controller
         return redirect()->back()->with('mensagem', 'Usuário aprovado com sucesso!');
     }
 
-    public function usuario_negado(User $user)
+    public function usuario_negado(User $usuario)
     {
-        $this->authorize('validar', $user);
+        $this->authorize('validar', $usuario);
 
-        $user->reprovado();
+        $usuario->reprovado();
 
         return redirect()->back()->with('mensagem', 'Usuário reprovado com sucesso!');
     }
