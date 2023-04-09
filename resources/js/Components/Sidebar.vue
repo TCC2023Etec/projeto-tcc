@@ -32,52 +32,67 @@
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-1">
-                        <li class="nav-item">
+                        <li class="nav-item border border-end-0 border-top-0 ps-2">
                             <a class="nav-link active" aria-current="page" :href="route('inicial.index')">Tela inicial</a>
                         </li>
-                        <li class="nav-item">
+                        
+                        <li class="nav-item border border-end-0 border-top-0 ps-2">
                             <a class="nav-link active" aria-current="page" :href="route('admin.index')">Início</a>
                         </li>
                         <!-- Publicações -->
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown border border-end-0 border-top-0 ps-2">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Publicações
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" :href="route('postagens.aprova')">Validar</a></li>
+                            <ul class="dropdown-menu border-0">
                                 <li>
-                                    <hr class="dropdown-divider">
+                                    <Link class="dropdown-item" :href="route('postagens.aprova')">
+                                        Validar
+                                        <span v-if="numPostagens" class="badge text-bg-secondary">{{ numPostagens }}</span>
+                                    </Link>
                                 </li>
+                                <!-- <li>
+                                    <hr class="dropdown-divider">
+                                </li> -->
                                 <li><a class="dropdown-item" :href="route('postagens.store')">Criar publicação</a></li>
                             </ul>
                         </li>
                         <!-- Usuários -->
-                        <li v-if="usuarioLogado.tipo == 'administrador'"  class="nav-item dropdown">
+                        <li v-if="usuarioLogado.tipo == 'administrador'"  class="nav-item dropdown border border-end-0 border-top-0 ps-2">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Usuários
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><Link class="dropdown-item" :href="route('user.index')">Listar</Link></li>
+                            <ul class="dropdown-menu border-0">
                                 <li>
-                                    <hr class="dropdown-divider">
+                                    <Link class="dropdown-item border-bottom" :href="route('user.index')">
+                                        Listar
+                                    </Link>
                                 </li>
-                                <li><Link class="dropdown-item" :href="route('user.aprova')">Validar</Link></li>
+                                <!-- <li>
+                                    <hr class="dropdown-divider">
+                                </li> -->
                                 <li>
-                                    <hr class="dropdown-divider">
+                                    <Link class="dropdown-item border-bottom" :href="route('user.aprova')">
+                                        Validar
+                                        <span v-if="numUsuarios" class="badge text-bg-secondary">{{ numUsuarios }}</span>
+                                    </Link>
                                 </li>
+                                <!-- <li>
+                                    <hr class="dropdown-divider">
+                                </li> -->
                                 <li><Link class="dropdown-item" :href="route('user.create')">Novo usuário</Link></li>
                             </ul>
                         </li>
                         <!-- Cursos -->
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown border border-end-0 border-top-0 ps-2">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Cursos
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><Link class="dropdown-item" :href="route('cursos.index')">Listar</Link></li>
-                                <li>
+                            <ul class="dropdown-menu border-0">
+                                <li><Link class="dropdown-item border-bottom" :href="route('cursos.index')">Listar</Link></li>
+                                <!-- <li>
                                     <hr class="dropdown-divider">
-                                </li>
+                                </li> -->
                                 <li><Link class="dropdown-item" :href="route('cursos.create')">Novo curso</Link></li>
                             </ul>
                         </li>
@@ -96,6 +111,10 @@ export default {
     components: {
         Link
     },  
+    props: {
+        numUsuarios: Number,
+        numPostagens: Number
+    },
     data() {
         return {
             isSidebarOpen: true,

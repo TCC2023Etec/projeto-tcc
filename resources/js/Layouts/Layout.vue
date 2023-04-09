@@ -2,7 +2,10 @@
     <div class="containter-fluid d-flex flex-column">
         
         <div class="mb-5">
-            <SideBar />
+            <SideBar 
+            :numPostagens="numPostagens"
+            :numUsuarios="numUsuarios"
+            />
             <div v-if="$page.props.flash.mensagem" 
             class="toast align-items-center p-1 mb-4 text-sm bg-green-300 toast fade show" role="alert" 
             aria-live="assertive" 
@@ -34,6 +37,10 @@ export default {
     name: 'Layout',
     components: {
         SideBar
+    },
+    props: {
+        numPostagens: Number,
+        numUsuarios: Number
     },
     data() {
         return {
