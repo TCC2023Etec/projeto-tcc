@@ -25,12 +25,17 @@
                     <th scope="col">Título</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Autor</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
                 <tr v-for="postagem in postagens" :key="postagem.id">
                     <th scope="row">{{ postagem.id }}</th>
-                    <td>{{ postagem.titulo }}</td>
+                    <td>
+                        <Link :href="route('postagens.show.admin', postagem.id)">
+                            {{ postagem.titulo }}
+                        </Link>
+                    </td>
                     <td>{{ postagem.descricao  }}</td>
                     <td>{{ postagem.usuario.name  }}</td>
                     <td>

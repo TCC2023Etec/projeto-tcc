@@ -15,7 +15,7 @@
     
     <!-- Dropsdown para alunos -->
     <div v-if="usuarioLogado && usuarioLogado.tipo == 'aluno'" class="dropdown">
-        <button class="btn btn-secondary btn-l dropdown-toggle border border-0 dropstart me-5 texto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-secondary btn-l dropdown-toggle border-0 dropstart me-5 texto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class='bx bx-user'></i>
         {{ usuarioLogado.name }}
         </button>
@@ -33,7 +33,7 @@
 
     
     <div v-if="usuarioLogado && usuarioLogado.tipo == 'professor'" class="dropdown">
-        <button class="btn btn-secondary btn-l dropdown-toggle border border-0 dropstart me-5 texto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-secondary btn-l dropdown-toggle border-0 dropstart me-5 texto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class='bx bx-user'></i>
         {{ usuarioLogado.name }}
         </button>
@@ -52,7 +52,7 @@
     </div>
 
     <div v-if="usuarioLogado && usuarioLogado.tipo == 'administrador'" class="dropdown">
-        <button class="btn btn-secondary btn-l dropdown-toggle border border-0 dropstart me-5 texto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-secondary btn-l dropdown-toggle border-0 dropstart me-5 texto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class='bx bx-user'></i>
         {{ usuarioLogado.name }}
         </button>

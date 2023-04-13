@@ -11,8 +11,12 @@ class VerificarSituacaoUsuario
     {
         $user = $request->user();
 
-        if ($user && $user->situacao !== 'aprovado') {
+        if ($user && $user->situacao == null) {
             return redirect()->route('aguardando-validacao');
+        }
+
+        if ($user && $user->situacao == 'reprovado') {
+            return redirect()->route('requisicao.recusada');
         }
 
         return $next($request);

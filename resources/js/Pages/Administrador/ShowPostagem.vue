@@ -1,11 +1,9 @@
 <template>
-    <AdminLayout />
-    <!-- <Layout v-if="usuarioLogado.tipo == 'administrador' || usuarioLogado.tipo == 'professor'"/> -->
+    <Layout />
 
     <div class="container-fluid d-flex flex-column align-items-center vh-100">
         <header>
-            <Carousel v-if="postagem.imagem.length > 1" :postagem="postagem"/>
-            <img v-if="postagem.imagem.length == 1" :src="`/storage/postagem/${postagem.imagem}`" alt="Postagem">
+            <img :src="`/storage/postagem/${postagem.imagem}`" alt="Postagem">
             <h1>{{ postagem.titulo }}</h1>
         </header>
 
@@ -20,16 +18,12 @@
 </template>
 
 <script>
-import AdminLayout from '@/Layouts/Admin.vue';
 import Layout from '@/Layouts/Layout.vue';
-import Carousel from '@/Components/Carousel.vue';
 
 export default {
     name: "Show",
     components: {
-        AdminLayout,
-        Layout,
-        Carousel
+        Layout
     },
     props: {
         postagem: Object

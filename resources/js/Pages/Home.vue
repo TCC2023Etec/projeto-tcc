@@ -1,34 +1,57 @@
 <template>
-    <div>
+    <div class="bg-gradient" id="container">
         <AdminLayout />
         <div class="container-fluid">
-            <SmallCard v-for="postagem in postagens"
-            :postagem="postagem"
-            />
-            <!-- <BigCard
-            :postagens="postagens"
-            /> -->
+            
+            <div class="row">
+                <div  class="col-3">
+                    <CardProfile :usuario="usuarioLogado || usuarioDefault" />
+                </div>
+
+                <div class="col-6">
+                    <NewPost />
+                    <Card :postagens="postagens"/>
+                </div>
+            </div>
         </div>
     </div>
-
 </template>
 
 <script>
 import Navbar from '../Components/Navbar.vue';
-import SmallCard from '@/Components/SmallCard.vue';
-import BigCard from '@/Components/BigCard.vue';
 import AdminLayout from '@/Layouts/Admin.vue';
+import CardProfile from '@/Components/CardProfile.vue';
+import Card from '@/Components/Card.vue';
+import NewPost from '@/Components/Form/NewPost.vue';
 
 export default {
     name: 'Home',
     components: {
         Navbar,
-        SmallCard,
-        BigCard,
-        AdminLayout
+        AdminLayout,
+        CardProfile,
+        Card,
+        NewPost
     },
     props: {
-        postagens: Object
-    }
+        postagens: Array,
+        cursos: Array,
+    },
+    data () {
+        return {
+            usuarioLogado: this.$page.props.auth.user,
+            usuarioDefault: {
+                name: "Perfil",
+                tipo: "Usuário",
+                curso: "Etec Araçatuba",
+            }
+        }
+    },
 }
 </script>
+
+<style>
+#container {
+    background-color: rgb(236, 236, 236);
+}
+</style>
