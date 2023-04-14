@@ -26,7 +26,7 @@
                     <MensagemErro :mensagem="form.errors.imagem" />
                 </div>
                 <div class="col-12">
-                    <button class="btn" type="submit" :disabled="form.processing">Enviar</button>
+                    <button class="btn btn-formPostagem" type="submit" :disabled="form.processing">Enviar</button>
                 </div>
             </div>
     </form>
@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style>
-.btn {
+.btn-formPostagem {
     background-color: #b20000;
     border: none;
     color: #fff;
