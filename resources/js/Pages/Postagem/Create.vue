@@ -9,7 +9,6 @@ import AdminLayout from '@/Layouts/Admin.vue';
 
 export default {
     name: 'CreatePostagem',
-    emit: ['hideMessage'],
     components: {
         FormPostagem,
         AdminLayout
