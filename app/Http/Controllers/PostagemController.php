@@ -39,6 +39,14 @@ class PostagemController extends Controller
             $post->imagem = $imageName;
         }
 
+        if(auth()->user()->tipo == 'administrador') {
+            $post->situacao = 'aprovado';
+        }
+
+        if(auth()->user()->tipo == 'moderador') {
+            $post->situacao = 'aprovado';
+        }
+
         $post->usuario()->associate($request->user());
         // $movimentoFinanceiro->administrador()->associate($request->user());
         
@@ -50,6 +58,20 @@ class PostagemController extends Controller
     public function show (Postagem $postagem)
     {
         return inertia('Postagem/Show', ['postagem' => $postagem]);
+    }
+
+    public function show_administrador(Postagem $postagem)
+    {
+        return inertia('Administrador/ShowPostagem', ['postagem' => $postagem]);
+    }
+
+    public function historico_postagem()
+    {
+        $postagens = Postagem::where('situacao', 'aprovado')->orWhere('situacao', 'reprovado')->get();
+
+        $postagens->load('usuario', 'aprovador');
+
+        return inertia('Postagem/Historico', ['postagens' => $postagens]);
     }
 
     public function lista_aprova_postagem ()
@@ -69,6 +91,10 @@ class PostagemController extends Controller
 
         $postagem->aprovado();
 
+        // $postagem->update(['aprovado_por' => Auth::user()->id]);
+        $postagem->aprovado_por = auth()->user()->id;
+        $postagem->save();
+
         return redirect()->back()->with('mensagem', 'Postagem aprovada com sucesso!');
     }
 
@@ -76,6 +102,31 @@ class PostagemController extends Controller
     {
         $postagem->reprovado();
 
+        $postagem->aprovado_por = auth()->user()->id;
+        $postagem->save();
+
         return redirect()->back()->with('mensagem', 'Postagem reprovada com sucesso!');
     }
+
+    // public function like(Postagem $postagem)
+    // {
+    //     $user = Auth::user();
+
+    //     $like = new Like();
+    //     $like->user()->associate($user);
+    //     $like->save();
+    // }
+
+    // public function unlike(Postagem $postagem)
+    // {
+    //     $user = Auth::user();
+
+    //     $like = $postagem->like()->where('user_id', $user->id)->first();
+
+    //     if ($postagem->like()->where('user_id', $user->id)->exists()) {
+    //         return;
+    //     }
+
+    //     $like->delete();
+    // }
 }

@@ -1,7 +1,7 @@
 <template>
     <form class="position-relative form border border-light-subtle p-2 rounded" @submit.prevent="formSubmit" enctype="multipart/form-data">
             <div class="container-xxl">
-                <div class="form-floating mb-4 border border-0">
+                <div class="form-floating mb-4 border">
                     <input type="textarea" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInput" placeholder="Título" v-model="form.titulo">
                     <label for="titulo">Título</label>
                     <MensagemErro :mensagem="form.errors.titulo"/>
@@ -55,6 +55,7 @@ export default {
             this.form
             .submit('post', route('postagens.store'), {
                 _method: 'put',
+                
             });
         },
     },
@@ -66,6 +67,7 @@ export default {
             conteudo: '',
             imagem: []
         });
+
 
         return { form };
     }

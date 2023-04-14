@@ -67,7 +67,7 @@ class PostagemPolicy
      */
     public function validar(User $user, Postagem $postagem)
     {
-        return $user->tipo == 'professor'
+        return $user->tipo == 'professor' || $user->tipo == 'moderador'
                 ? Response::allow()
                 : Response::deny('Você não tem a permissão de aprovar/reprovar uma postagem');
     }

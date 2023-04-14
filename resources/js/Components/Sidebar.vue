@@ -7,7 +7,7 @@
             
             <!-- <a class="navbar-brand" href="#">Mural Etec</a> -->
             <div v-if="usuarioLogado" class="dropdown">
-                <button class="btn btn-secondary btn-l dropdown-toggle border border-0 dropstart me-5 texto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-secondary btn-l dropdown-toggle border-0 dropstart me-5 texto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class='bx bx-user'></i>
                     {{ usuarioLogado.name }}
                 </button>
@@ -39,6 +39,7 @@
                         <li class="nav-item border border-end-0 border-top-0 ps-2">
                             <a class="nav-link active" aria-current="page" :href="route('admin.index')">Início</a>
                         </li>
+                        
                         <!-- Publicações -->
                         <li class="nav-item dropdown border border-end-0 border-top-0 ps-2">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,8 +56,10 @@
                                     <hr class="dropdown-divider">
                                 </li> -->
                                 <li><a class="dropdown-item" :href="route('postagens.store')">Criar publicação</a></li>
+                                <li><a class="dropdown-item" :href="route('postagens.historico')">Histórico</a></li>
                             </ul>
                         </li>
+
                         <!-- Usuários -->
                         <li v-if="usuarioLogado.tipo == 'administrador'"  class="nav-item dropdown border border-end-0 border-top-0 ps-2">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -83,8 +86,9 @@
                                 <li><Link class="dropdown-item" :href="route('user.create')">Novo usuário</Link></li>
                             </ul>
                         </li>
+
                         <!-- Cursos -->
-                        <li class="nav-item dropdown border border-end-0 border-top-0 ps-2">
+                        <li v-if="usuarioLogado.tipo == 'administrador' || usuarioLogado.tipo == 'professor'" class="nav-item dropdown border border-end-0 border-top-0 ps-2">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Cursos
                             </a>

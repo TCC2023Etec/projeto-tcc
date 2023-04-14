@@ -23,11 +23,11 @@
                 >X</button>
             </div>
         </div>
-        </div>
-        <div>
-            <slot />
-        </div>
     </div>
+    <div>
+        <slot />
+    </div>
+</div>
 </template>
 
 <script>
@@ -48,10 +48,9 @@ export default {
         };
     },
     mounted() {
-
     },
     methods: {
-        
-    },
+       
+    }
 }
 </script>

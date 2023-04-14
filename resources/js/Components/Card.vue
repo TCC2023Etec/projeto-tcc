@@ -6,10 +6,10 @@
             <p class="card-text">{{ postagem.descricao }}</p>
             <p class="card-text"><small class="text-body-secondary">{{ postagem.usuario.name }}</small></p>
             <p class="card-text"><small class="text-body-secondary">{{ postagem.created_at }}</small></p>
-            <span>{{ postagem.like }}</span>
+            <span>2</span>
         </div>
         <div class="card-footer d-flex justify-around">
-            <button @click.prevent="likePost(postagem)" class="d-flex justify-content-center align-items-center"><i class='bx bx-like me-1'></i>Curtir</button>
+            <button class="d-flex justify-content-center align-items-center"><i class='bx bx-like me-1'></i>Curtir</button>
             <!-- <i class='bx bx-like bx-tada bx-flip-horizontal' ></i>     Animação do botão de like -->
             <button class="d-flex justify-content-center align-items-center"><i class='bx bx-message-dots me-1'></i>Comentar</button>
         </div>
@@ -24,9 +24,7 @@ export default {
         postagens: Array
     },
     methods: {
-        likePost(postagem) {
-            this.$inertia.post(route('postagens.like', postagem.id));
-        }
+        
     }
 }
 </script>

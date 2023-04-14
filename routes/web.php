@@ -30,17 +30,20 @@ Route::prefix('login')->group(function () {
 Route::controller(InicialController::class)->group(function () {
     Route::get('/', 'index')->name('inicial.index');
     Route::get('/aguardando-validacao', 'aguardando_validacao')->name('aguardando-validacao');
+    Route::get('/requisicao-recusada', 'requisicao_recusada')->name('requisicao.recusada');
 });
 
 
 
 /**
  * Administrador 
+ * 
+ * 
+ * Middleware => 'auth' = Usuário autenticado
+ * 'verSituacao' = Verifica se o usuário foi aprovado ou não
  */
 Route::middleware(['auth', 'verSituacao', CheckUserType::class])->group(function () {
-    /**
-     * Cursos
-     */
+    // Cursos
     Route::controller(CursoController::class)->group(function () {
         Route::get('/cursos', 'index')->name('cursos.index');
         Route::get('/cursos/novo', 'create')->name('cursos.create');
@@ -52,9 +55,7 @@ Route::middleware(['auth', 'verSituacao', CheckUserType::class])->group(function
         Route::delete('/curso/{curso}', 'destroy')->name('cursos.destroy');
     });
 
-    /**
-     * Painel de Controler
-     */
+    // Painel de Controler
     Route::get('/painel-controle', [AdministradorController::class, 'index'])->name('admin.index');
 
     // Usuários
@@ -75,25 +76,22 @@ Route::middleware(['auth', 'verSituacao', CheckUserType::class])->group(function
     // Postagens no Painel de Controle
     Route::controller(PostagemController::class)->group(function () {
         Route::get('/postagens/aprova', 'lista_aprova_postagem')->name('postagens.aprova');
+        Route::get('/postagem/admin/{postagem}', 'show_administrador')->name('postagens.show.admin');
+        Route::get('/postagens/historico', 'historico_postagem')->name('postagens.historico');
 
         Route::post('/postagens/aprovada/{postagem}', 'postagem_aprovada')->name('postagens.aprovada');
         Route::post('/postagens/negada/{postagem}', 'postagem_negada')->name('postagens.negada');
-    });
-    
+    });    
 });
 
 
 Route::middleware(['auth', 'verSituacao'])->namespace('App\Http\Controllers')->group(function () {    
-    /**
-     * Postagem
-     */
+    // Postagens
     Route::get('/nova-publicacao', [PostagemController::class, 'create_postagem'])->name('postagens.store');
-    Route::get('/publicacao/{postagem}', [PostagemController::class, 'show'])->name('postagens.show');
+    Route::get('/publicacao/{postagem}', [PostagemController::class, 'show'])->name('postagens.show')->withoutMiddleware(['auth', 'verSituacao']);
     Route::post('/nova-publicacao', [PostagemController::class, 'store'])->name('postagens.store');
 
-    /**
-     * Profile
-     */
+    // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

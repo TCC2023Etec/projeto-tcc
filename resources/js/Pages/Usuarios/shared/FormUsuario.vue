@@ -2,7 +2,7 @@
     <form class="position-relative form border border-light-subtle p-2 rounded" @submit.prevent="formSubmit">
         <div class="container-xxl">
             <div class="row">
-                <div class="mb-4 border border-0 col-6">
+                <div class="mb-4 border-0 col-6">
                     <label for="Nome">Nome</label>
                     <input type="text" class="form-control shadow-sm bg-body-tertiary rounded" id="floatingInputNome" placeholder="Nome" v-model="form.name">
                     <MensagemErro :mensagem="form.errors.name"/>
@@ -46,6 +46,7 @@
                         <option selected>Selecione o tipo de usuário</option>
                         <option value="administrador">Administrador</option>
                         <option value="professor">Professor</option>
+                        <option value="moderador">Moderador</option>
                         <option value="aluno">Aluno</option>
                     </select>
                 </div>

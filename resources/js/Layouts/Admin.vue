@@ -21,7 +21,14 @@ export default {
     },
     props: {
         mensagem: String
-    } 
+    },
+    methods: {
+        hideMessage() {
+            setInterval(() => {
+                this.mensagem.fadeOut(1500)
+            }, 3000);
+        }
+    }
 }
 
 </script>

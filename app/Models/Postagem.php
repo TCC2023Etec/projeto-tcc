@@ -12,7 +12,7 @@ class Postagem extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['titulo', 'descricao', 'imagem', 'conteudo'];
+    protected $fillable = ['titulo', 'descricao', 'imagem', 'conteudo', 'aprovado_por'];
 
     protected $table = 'postagens';
 
@@ -20,6 +20,11 @@ class Postagem extends Model
     public function usuario()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function aprovador()
+    {
+        return $this->belongsTo(User::class, 'aprovado_por');
     }
 
     /**

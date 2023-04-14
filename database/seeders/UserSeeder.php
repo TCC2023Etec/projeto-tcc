@@ -17,23 +17,34 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Mural Aluno',
             'email' => 'mural.aluno@test.com',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('123123123'),
             'tipo' => 'aluno',
-            'curso_id' => 1
+            'curso_id' => 1,
+            'situacao' => 1
         ]);
 
         User::create([
             'name' => 'Mural Professor',
             'email' => 'mural.prof@test.com',
-            'password' => Hash::make('12345678'),
-            'tipo' => 'professor'
+            'password' => Hash::make('123123123'),
+            'tipo' => 'professor',
+            'situacao' => 1
         ]);
 
         User::create([
             'name' => 'Mural Administrador',
             'email' => 'mural.admin@test.com',
-            'password' => Hash::make('12345678'),
-            'tipo' => 'administrador'
+            'password' => Hash::make('123123123'),
+            'tipo' => 'administrador',
+            'situacao' => 1
+        ]);
+
+        User::create([
+            'name' => 'Mural Moderador',
+            'email' => 'mural.moderador@test.com',
+            'password' => Hash::make('123123123'),
+            'tipo' => 'moderador',
+            'situacao' => 1
         ]);
     }
 }
