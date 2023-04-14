@@ -25,7 +25,8 @@ class User extends Authenticatable
         'email',
         'password',
         'tipo',
-        'situacao'
+        'situacao',
+        'imagem',
     ];
 
     /**
@@ -67,6 +68,11 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Postagem::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 
     public function aprovado()

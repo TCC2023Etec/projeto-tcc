@@ -1,13 +1,13 @@
 <template>
-    
-    <div class="card mb-3 shadow">
+
+    <div class="card mb-3 shadow h-50 w-75">
         <div class="card-body">
-            <div class="d-flex flex-column align-items-center text-center">
-                <img src="../../../public/img/perfil.png" alt="user profile picture" class="rounded-circle" width="100">
-                <div class="mt-3">
+            <div class="d-flex flex-column align-items-center text-center justify-around">
+                <img :src="`storage/users/${usuario.imagem}`" alt="user profile picture" class="rounded-circle" width="200">
+                <div class="mt-5 fs-5">
                     <h4> {{ usuario.name }}</h4>
                     <p class="text-secondary mb-1">{{ tipoUsuario }}</p>
-                    <p class="text-muted font-size-sm">{{ usuario.curso }}</p>
+                    <p class="text-muted font-size-sm">{{ usuario.curso_id }}</p>
                     <!-- <button class="btn btn-primary">Editar perfil</button> -->
                 </div>
             </div>

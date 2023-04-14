@@ -20,6 +20,7 @@ const form = useForm({
     terms: false,
     tipo: '',
     curso: null,
+    imagem: ''
 });
 
 const submit = () => {
@@ -166,6 +167,11 @@ const mostrarConfirmacaoSenha = () => {
                     {{ curso.nome }}
                     </option>
                 </select>
+            </div>
+
+            <div class="mb-3 d-flex flex-column justify-content-start shadow-sm bg-body-tertiary rounded p-2">
+                <label for="imagem" class="form-label me-3">Imagem</label>
+                <input class="form-control" type="file" id="formFileMultiple" multiple @input="form.imagem = $event.target.files[0]">
             </div>
 
             <div class="flex items-center justify-end mt-4">

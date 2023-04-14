@@ -7,9 +7,9 @@
                 <div  class="col-3">
                     <CardProfile :usuario="usuarioLogado || usuarioDefault" />
                 </div>
-
+                
                 <div class="col-6">
-                    <NewPost />
+                    <NewPost :usuario="usuarioLogado" />
                     <Card :postagens="postagens"/>
                 </div>
             </div>
@@ -47,6 +47,9 @@ export default {
             }
         }
     },
+    mounted() {
+        console.log(this.usuarioLogado)
+    }
 }
 </script>
 

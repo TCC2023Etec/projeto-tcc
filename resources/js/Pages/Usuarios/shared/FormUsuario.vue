@@ -61,6 +61,12 @@
                     </select>
                 </div>
             </div>
+
+            <div class="mb-3 d-flex flex-column justify-content-start shadow-sm bg-body-tertiary rounded p-2">
+                    <label for="imagem" class="form-label me-3">Foto de Perfil</label>
+                    <input class="form-control" type="file" id="formFileMultiple" multiple @input="form.imagem = $event.target.files[0]">
+                    <MensagemErro :mensagem="form.errors.imagem" />
+                </div>
             
             <div class="col-12">
                 <button class="btn btn-primary bg-primary" type="submit" :disabled="form.processing">Salvar</button>
@@ -142,6 +148,7 @@ export default {
             terms: false,
             tipo: '',
             curso: '',
+            imagem: ''
         });
 
         form.id = props.usuario.id ?? null;

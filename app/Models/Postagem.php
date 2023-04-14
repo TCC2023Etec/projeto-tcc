@@ -16,6 +16,10 @@ class Postagem extends Model
 
     protected $table = 'postagens';
 
+    protected $appends = [
+        'like'
+    ];
+
     // Relações
     public function usuario()
     {
@@ -25,6 +29,17 @@ class Postagem extends Model
     public function aprovador()
     {
         return $this->belongsTo(User::class, 'aprovado_por');
+    }
+
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likable');
+    }
+
+    // Getters
+    public function getLikeAttribute()
+    {
+        return $this->likes->count();
     }
 
     /**

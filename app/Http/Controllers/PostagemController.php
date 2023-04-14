@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdatePostagem;
+use App\Models\Like;
 use App\Models\Postagem;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -108,25 +109,19 @@ class PostagemController extends Controller
         return redirect()->back()->with('mensagem', 'Postagem reprovada com sucesso!');
     }
 
-    // public function like(Postagem $postagem)
-    // {
-    //     $user = Auth::user();
+    public function like(Postagem $postagem)
+    {
+        $user = Auth::user();
 
-    //     $like = new Like();
-    //     $like->user()->associate($user);
-    //     $like->save();
-    // }
+        $postagem->likes()->create();
+    }
 
-    // public function unlike(Postagem $postagem)
-    // {
-    //     $user = Auth::user();
+    public function unlike(Postagem $postagem)
+    {
+        $user = Auth::user();
 
-    //     $like = $postagem->like()->where('user_id', $user->id)->first();
+        $like = $postagem->likes()->where('user_id', $user->id)->first();
 
-    //     if ($postagem->like()->where('user_id', $user->id)->exists()) {
-    //         return;
-    //     }
-
-    //     $like->delete();
-    // }
+        $like->delete();
+    }
 }

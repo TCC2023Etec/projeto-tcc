@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Curso;
 use App\Models\Postagem;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,9 @@ class InicialController extends Controller
 
         $postagens->load('usuario', 'usuario.curso');
 
-        $cursos = Curso::all();
+        $user = Auth::user();
+
+        $cursos = $user->cursos;
 
         return inertia('Home', ['postagens' => $postagens, 'cursos' => $cursos]);
     }

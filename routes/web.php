@@ -81,6 +81,9 @@ Route::middleware(['auth', 'verSituacao', CheckUserType::class])->group(function
 
         Route::post('/postagens/aprovada/{postagem}', 'postagem_aprovada')->name('postagens.aprovada');
         Route::post('/postagens/negada/{postagem}', 'postagem_negada')->name('postagens.negada');
+
+        Route::post('/postagens/like/{postagem}', 'like')->name('postagens.like');
+        Route::delete('/postagens/unlike/{postagem}', 'unlike')->name('postagens.unlike');
     });    
 });
 

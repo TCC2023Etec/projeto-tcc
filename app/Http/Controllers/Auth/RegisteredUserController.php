@@ -49,6 +49,20 @@ class RegisteredUserController extends Controller
             'curso' => $request->curso
         ]);
 
+         //image upload
+         if($request -> hasfile('imagem') && $request -> file('imagem') -> isValid()) {
+            
+            $requestImage = $request->imagem;
+
+            $extension = $requestImage -> extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $request->imagem->move(public_path('storage/users'), $imageName);
+
+            $user->imagem = $imageName;
+        }
+
         if($request->curso) {
             $curso = Curso::find($request->curso);
 

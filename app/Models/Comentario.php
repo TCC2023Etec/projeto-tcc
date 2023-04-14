@@ -23,4 +23,10 @@ class Comentario extends Model
     {
         return $date->format('d-m-Y');
     }
+
+    // Relações
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likable');
+    }
 }

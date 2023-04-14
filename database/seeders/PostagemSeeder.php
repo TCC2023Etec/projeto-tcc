@@ -25,7 +25,8 @@ class PostagemSeeder extends Seeder
             'descricao' => 'Postagem feita pelo seed',
             'conteudo' => 'Postagem feita através do seed para manter os testes de migration',
             'imagem' => 'imagem.png',
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'situacao' => 'aprovado'
         ]);
 
     }
