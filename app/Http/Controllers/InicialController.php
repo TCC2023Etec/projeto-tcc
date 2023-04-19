@@ -19,9 +19,9 @@ class InicialController extends Controller
 
         $user = Auth::user();
 
-        $cursos = $user->cursos;
+        // $cursos = $user->cursos;
 
-        return inertia('Home', ['postagens' => $postagens, 'cursos' => $cursos]);
+        return inertia('Home', ['postagens' => $postagens]);
     }
 
     public function aguardando_validacao()

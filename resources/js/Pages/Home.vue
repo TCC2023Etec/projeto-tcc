@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gradient" id="container">
+    <div class="bg-gradient vh-100" id="container">
         <AdminLayout />
         <div class="container-fluid">
             
@@ -9,7 +9,7 @@
                 </div>
                 
                 <div class="col-6">
-                    <NewPost :usuario="usuarioLogado" />
+                    <NewPost :usuario="usuarioLogado || usuarioDefault" />
                     <Card :postagens="postagens"/>
                 </div>
             </div>
@@ -44,6 +44,7 @@ export default {
                 name: "Perfil",
                 tipo: "Usuário",
                 curso: "Etec Araçatuba",
+                imagem: ''
             }
         }
     },

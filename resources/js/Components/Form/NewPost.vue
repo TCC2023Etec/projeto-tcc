@@ -2,7 +2,8 @@
     <div class="bg-white rounded-lg shadow p-6 mb-8 d-flex justify-content-around" style="width: 650px;">
         <!-- profile pic -->
         <div class="cursor-pointer font-bold w-12 h-12 bg-gray-300 flex items-center justify-center rounded-5 me-3">
-            <img :src="`storage/users/${usuario.imagem}`" alt="Perfil" class="rounded-5">
+            <img v-if="usuario.imagem" :src="`storage/users/${usuario.imagem}`" alt="Perfil" class="rounded-5">
+            <img v-else src="../../../../public/img/perfil.png" alt="Perfil" class="rounded-5">
         </div>
         
         <!-- Form post -->
