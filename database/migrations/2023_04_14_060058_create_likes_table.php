@@ -18,6 +18,7 @@ return new class extends Migration
             
             $table->integer('likable_id');
             $table->string('likable_type');
+            $table->foreignIdFor(User::class);
 
             $table->timestamps();
         });

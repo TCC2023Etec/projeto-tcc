@@ -1,6 +1,6 @@
 <template>
 
-    <div class="card mb-3 shadow h-50 w-75">
+    <div class="card mb-3 shadow h-30 w-75">
         <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center justify-around">
                 <img v-if="usuario.imagem" :src="`storage/users/${usuario.imagem}`" alt="user profile picture" class="rounded-circle" width="200">

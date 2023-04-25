@@ -4,8 +4,8 @@
 
     <div class="container-fluid d-flex flex-column align-items-center vh-100">
         <header>
-            <Carousel v-if="postagem.imagem.length > 1" :postagem="postagem"/>
-            <img v-if="postagem.imagem.length == 1" :src="`/storage/postagem/${postagem.imagem}`" alt="Postagem">
+            <!-- <Carousel v-if="postagem.imagem.length > 1" :postagem="postagem"/> -->
+            <img :src="`/storage/postagem/${postagem.imagem}`" alt="Postagem" class="img-fluid">
             <h1>{{ postagem.titulo }}</h1>
         </header>
 

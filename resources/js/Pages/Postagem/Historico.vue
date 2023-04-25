@@ -50,9 +50,6 @@ export default {
     },
     methods: {
         
-    },
-    mounted() {
-        console.log(this.postagens)
     }
 }
 </script>

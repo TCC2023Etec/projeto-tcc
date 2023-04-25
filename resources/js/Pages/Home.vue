@@ -1,15 +1,15 @@
 <template>
-    <div class="bg-gradient vh-100" id="container">
+    <div class="bg-gradient" id="container">
         <AdminLayout />
         <div class="container-fluid">
             
             <div class="row">
                 <div  class="col-3">
-                    <CardProfile :usuario="usuarioLogado || usuarioDefault" />
+                    <CardProfile v-if="usuarioLogado" :usuario="usuarioLogado || usuarioDefault" />
                 </div>
                 
                 <div class="col-6">
-                    <NewPost :usuario="usuarioLogado || usuarioDefault" />
+                    <NewPost v-if="usuarioLogado" :usuario="usuarioLogado || usuarioDefault" />
                     <Card :postagens="postagens"/>
                 </div>
             </div>
@@ -47,9 +47,6 @@ export default {
                 imagem: ''
             }
         }
-    },
-    mounted() {
-        console.log(this.usuarioLogado)
     }
 }
 </script>

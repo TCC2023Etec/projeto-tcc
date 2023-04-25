@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar bg-body-tertiary nav-admin">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -134,7 +134,7 @@ export default {
 </script>
 
 <style>
-nav {
+.nav-admin {
     background-color: grey;
 }
 </style>

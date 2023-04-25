@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\PostDec;
 
 class PostagemController extends Controller
 {
@@ -42,14 +41,15 @@ class PostagemController extends Controller
 
         if(auth()->user()->tipo == 'administrador') {
             $post->situacao = 'aprovado';
+            $post->aprovado_por = Auth::user();
         }
 
         if(auth()->user()->tipo == 'moderador') {
             $post->situacao = 'aprovado';
+            $post->aprovado_por = Auth::user();
         }
 
         $post->usuario()->associate($request->user());
-        // $movimentoFinanceiro->administrador()->associate($request->user());
         
         $post->save();
 
@@ -113,7 +113,15 @@ class PostagemController extends Controller
     {
         $user = Auth::user();
 
-        $postagem->likes()->create();
+        $like = Like::where('user_id', $user->id)->first();
+
+        if($like) {
+            return redirect()->back();
+        }
+
+        $postagem->likes()->create([
+            'user_id' => $user->id
+        ]);
     }
 
     public function unlike(Postagem $postagem)

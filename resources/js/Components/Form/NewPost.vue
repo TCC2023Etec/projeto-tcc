@@ -31,22 +31,25 @@
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Título:</label>
                                 <textarea v-model="form.titulo" class="form-control rounded-2 resize-none" id="recipient-name" rows="1"></textarea>
+                                <MensagemErro :mensagem="form.errors.titulo" />
                             </div>
                             
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">Descrição:</label>
                                 <textarea v-model="form.descricao" class="form-control resize-none" id="message-text"></textarea>
+                                <MensagemErro :mensagem="form.errors.descricao" />
                             </div>
                             
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Conteúdo:</label>
                                 <textarea v-model="form.conteudo" class="form-control rounded-2 resize-none" id="recipient-name" rows="10"></textarea>
+                                <MensagemErro :mensagem="form.errors.conteudo" />
                             </div>
                             
                             <div class="mb-3 d-flex flex-column justify-content-start shadow-sm bg-body-tertiary rounded p-2">
                                 <label for="imagem" class="form-label me-3">Imagem</label>
                                 <input class="form-control" type="file" id="formFileMultiple" multiple @input="form.imagem = $event.target.files[0]">
-                                <!-- <MensagemErro :mensagem="form.errors.imagem" /> -->
+                                <MensagemErro :mensagem="form.errors.imagem" />
                             </div>
                             
                         </div>
@@ -64,9 +67,13 @@
 
 <script>
 import { useForm } from '@inertiajs/vue3';
+import MensagemErro from '@/Components/MensagemErro.vue';
 
 export default {
     name: 'NewPost',
+    components: {
+        MensagemErro
+    },
     props: {
         usuario: Object
     },
