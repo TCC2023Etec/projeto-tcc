@@ -113,10 +113,14 @@ class PostagemController extends Controller
     {
         $user = Auth::user();
 
-        $like = Like::where('user_id', $user->id)->first();
+        $like = Like::where('user_id', $user->id)
+        ->where('likable_id', $postagem->id)
+        ->where('likable_type', 'App\Models\Postagem')
+        ->first();
 
         if($like) {
-            return redirect()->back();
+            $like->delete();
+            return;
         }
 
         $postagem->likes()->create([
@@ -124,12 +128,19 @@ class PostagemController extends Controller
         ]);
     }
 
-    public function unlike(Postagem $postagem)
+    public function verifica_curtida()
     {
-        $user = Auth::user();
+        $usuario = Auth::user();
 
-        $like = $postagem->likes()->where('user_id', $user->id)->first();
+        if(!$usuario){
+            return false;
+        }
 
-        $like->delete();
+        $postagens = Postagem::where('user_id', $usuario->id);
+
+        $curtidaPostagem = Like::where('user_id', $usuario->id)
+            ->where('likable_type', 'App\Models\Postagem')
+            ->where('likable_id', $postagens->id)
+            ->get();
     }
 }

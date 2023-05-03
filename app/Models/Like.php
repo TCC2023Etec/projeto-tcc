@@ -22,4 +22,9 @@ class Like extends Model
     // {
     //     return $this->belongsTo(Postagem::class, 'postagem_id');
     // }
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

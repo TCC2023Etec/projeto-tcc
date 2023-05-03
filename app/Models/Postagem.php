@@ -6,6 +6,7 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Postagem extends Model
 {
@@ -34,6 +35,20 @@ class Postagem extends Model
     public function likes()
     {
         return $this->morphMany(Like::class, 'likable');
+    }
+
+    public function getUsuarioLogadoCurtiuAttribute()
+    {
+        $usuario = Auth::user();
+        if (!$usuario){
+            return false;
+        }
+
+        if (! $this->relationLoaded('likes')) {
+            $this->load('likes');
+        }
+
+        return $this->likes->where('usuario.id', $usuario->id)->isNotEmpty();
     }
 
     // Getters

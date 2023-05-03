@@ -2,7 +2,7 @@
     <div>
         <div class="d-flex flex-column mb-3">
             <div class="d-flex flex-row">
-                <div class="input-group w-60 me-3">
+                <div class="input-group w-60 me-3 ">
                     <input type="text" v-model="buscaUsuario" @change="pesquisar" placeholder="Pesquisar usuário...">
                     <button class="btn btn-outline-secondary" type="button" id="button-pesquisar"><i class='bx bx-search'></i></button>
                 </div>
