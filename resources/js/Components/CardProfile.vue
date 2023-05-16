@@ -35,7 +35,7 @@ export default {
 <style>
 .principal {
     position: sticky;
-    top: 0;
+    top: 10px;
 }
 
 </style>
