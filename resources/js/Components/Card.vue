@@ -5,7 +5,7 @@
             <h5 class="card-title fw-bold fs-4 mb-0">{{ postagem.titulo }}</h5>
             <p class="card-text mb-3"><small class="text-body-secondary">{{ postagem.usuario.name }} | {{ postagem.created_at }}</small></p>
             <!-- <p class="card-text">{{ postagem.conteudo }}</p> -->
-            <div :class="{'visivel': !postagem.visivel}" class="card-text" v-html="postagem.conteudo"></div>
+            <div :class="{'visivel': !postagem.visivel}" class="card-text texto-conteudo" v-html="postagem.conteudo"></div>
             <button v-if="postagem.conteudo.length > 100 && !postagem.visivel" @click="mostrarTexto(postagem)" class="btn btn-link text-start p-0 text-decoration-none">Ver mais</button>
             <button v-if="postagem.conteudo.length > 100 && postagem.visivel" @click="esconderTexto(postagem)" class="btn btn-link text-start p-0 text-decoration-none">Ver menos</button>
             <span>{{ postagem.like }} <i class='bx bx-like me-1'></i></span>
@@ -63,5 +63,10 @@ export default {
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
+}
+
+.texto-conteudo {
+    white-space: pre-wrap;
+    /* word-break: break; */
 }
 </style>
