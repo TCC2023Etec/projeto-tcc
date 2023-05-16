@@ -33,21 +33,21 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-1">
                         <li class="nav-item border border-end-0 border-top-0 ps-2">
-                            <a class="nav-link active" aria-current="page" :href="route('inicial.index')">Tela inicial</a>
+                            <a class="nav-link active color-text" aria-current="page" :href="route('inicial.index')">Tela inicial</a>
                         </li>
                         
                         <li class="nav-item border border-end-0 border-top-0 ps-2">
-                            <a class="nav-link active" aria-current="page" :href="route('admin.index')">Início</a>
+                            <a class="nav-link color-text" aria-current="page" :href="route('admin.index')">Início</a>
                         </li>
                         
                         <!-- Publicações -->
                         <li class="nav-item dropdown border border-end-0 border-top-0 ps-2">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle color-text" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Publicações
                             </a>
                             <ul class="dropdown-menu border-0">
                                 <li>
-                                    <Link class="dropdown-item" :href="route('postagens.aprova')">
+                                    <Link class="dropdown-item color-text" :href="route('postagens.aprova')">
                                         Validar
                                         <span v-if="numPostagens" class="badge text-bg-secondary">{{ numPostagens }}</span>
                                     </Link>
@@ -55,19 +55,19 @@
                                 <!-- <li>
                                     <hr class="dropdown-divider">
                                 </li> -->
-                                <li><a class="dropdown-item" :href="route('postagens.store')">Criar publicação</a></li>
-                                <li><a class="dropdown-item" :href="route('postagens.historico')">Histórico</a></li>
+                                <li><a class="dropdown-item color-text" :href="route('postagens.store')">Criar publicação</a></li>
+                                <li><a class="dropdown-item color-text" :href="route('postagens.historico')">Histórico</a></li>
                             </ul>
                         </li>
 
                         <!-- Usuários -->
                         <li v-if="usuarioLogado.tipo == 'administrador'"  class="nav-item dropdown border border-end-0 border-top-0 ps-2">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle color-text" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Usuários
                             </a>
                             <ul class="dropdown-menu border-0">
                                 <li>
-                                    <Link class="dropdown-item border-bottom" :href="route('user.index')">
+                                    <Link class="dropdown-item border-bottom color-text" :href="route('user.index')">
                                         Listar
                                     </Link>
                                 </li>
@@ -75,7 +75,7 @@
                                     <hr class="dropdown-divider">
                                 </li> -->
                                 <li>
-                                    <Link class="dropdown-item border-bottom" :href="route('user.aprova')">
+                                    <Link class="dropdown-item border-bottom color-text" :href="route('user.aprova')">
                                         Validar
                                         <span v-if="numUsuarios" class="badge text-bg-secondary">{{ numUsuarios }}</span>
                                     </Link>
@@ -83,21 +83,21 @@
                                 <!-- <li>
                                     <hr class="dropdown-divider">
                                 </li> -->
-                                <li><Link class="dropdown-item" :href="route('user.create')">Novo usuário</Link></li>
+                                <li><Link class="dropdown-item color-text" :href="route('user.create')">Novo usuário</Link></li>
                             </ul>
                         </li>
 
                         <!-- Cursos -->
                         <li v-if="usuarioLogado.tipo == 'administrador' || usuarioLogado.tipo == 'professor'" class="nav-item dropdown border border-end-0 border-top-0 ps-2">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle color-text" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Cursos
                             </a>
                             <ul class="dropdown-menu border-0">
-                                <li><Link class="dropdown-item border-bottom" :href="route('cursos.index')">Listar</Link></li>
+                                <li><Link class="dropdown-item border-bottom color-text" :href="route('cursos.index')">Listar</Link></li>
                                 <!-- <li>
                                     <hr class="dropdown-divider">
                                 </li> -->
-                                <li><Link class="dropdown-item" :href="route('cursos.create')">Novo curso</Link></li>
+                                <li><Link class="dropdown-item color-text" :href="route('cursos.create')">Novo curso</Link></li>
                             </ul>
                         </li>
                     </ul>
@@ -136,5 +136,9 @@ export default {
 <style>
 .nav-admin {
     background-color: grey;
+}
+
+.color-text {
+    color: black
 }
 </style>

@@ -41,15 +41,15 @@ class PostagemController extends Controller
 
         if(auth()->user()->tipo == 'administrador') {
             $post->situacao = 'aprovado';
-            $post->aprovado_por = Auth::user();
+            $post->aprovado_por = Auth::user()->id;
         }
 
         if(auth()->user()->tipo == 'moderador') {
             $post->situacao = 'aprovado';
-            $post->aprovado_por = Auth::user();
+            $post->aprovado_por = Auth::user()->id;
         }
 
-        $post->usuario()->associate($request->user());
+        $post->usuario()->associate(Auth::user());
         
         $post->save();
 
@@ -121,11 +121,11 @@ class PostagemController extends Controller
         if($like) {
             $like->delete();
             return;
+        } else {
+            $postagem->likes()->create([
+                'user_id' => $user->id
+            ]);
         }
-
-        $postagem->likes()->create([
-            'user_id' => $user->id
-        ]);
     }
 
     public function verifica_curtida()

@@ -29,4 +29,14 @@ class Comentario extends Model
     {
         return $this->morphMany(Like::class, 'likable');
     }
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function postagem()
+    {
+        return $this->belongsTo(Postagem::class, 'postagem_id');
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\PostagemController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdministradorController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -82,16 +83,28 @@ Route::middleware(['auth', 'verSituacao', CheckUserType::class])->group(function
         Route::post('/postagens/aprovada/{postagem}', 'postagem_aprovada')->name('postagens.aprovada');
         Route::post('/postagens/negada/{postagem}', 'postagem_negada')->name('postagens.negada');
 
-        Route::post('/postagens/like/{postagem}', 'like')->name('postagens.like');
+        Route::post('/postagens/like/{postagem}', 'like')->name('postagens.like')->withoutMiddleware(CheckUserType::class);
     });    
+
+    
 });
 Route::get('/postagem/verificaCurtida', [PostagemController::class, 'verifica_curtida'])->name('postagens.verificaCurtida');
 
-Route::middleware(['auth', 'verSituacao'])->namespace('App\Http\Controllers')->group(function () {    
+Route::middleware(['auth', 'verSituacao'])->namespace('App\Http\Controllers')->group(function () { 
     // Postagens
-    Route::get('/nova-publicacao', [PostagemController::class, 'create_postagem'])->name('postagens.store');
-    Route::get('/publicacao/{postagem}', [PostagemController::class, 'show'])->name('postagens.show')->withoutMiddleware(['auth', 'verSituacao']);
-    Route::post('/nova-publicacao', [PostagemController::class, 'store'])->name('postagens.store');
+    Route::controller(PostagemController::class)->group( function () {
+        Route::get('/nova-publicacao', 'create_postagem')->name('postagens.store');
+        Route::get('/publicacao/{postagem}', 'show')->name('postagens.show')->withoutMiddleware(['auth', 'verSituacao']);
+        Route::post('/nova-publicacao', 'store')->name('postagens.store');
+    });   
+
+    // Comentários
+    Route::controller(ComentarioController::class)->group(function () {
+        Route::post('/postagem/{postagem}', 'store')->name('comentarios.store');
+        Route::post('/postagem/editar/{postagem}/{comentario}', 'update')->name('comentarios.update');
+
+        Route::delete('/postagem/{comentario}/destroy', 'destroy')->name('comentarios.destroy');
+    });
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

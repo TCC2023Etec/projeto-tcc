@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-white rounded-lg shadow p-6 mb-8 d-flex justify-content-around" style="width: 650px;">
+    <div class="bg-light rounded-3 shadow p-6 mb-8 d-flex justify-content-around" style="width: 650px;">
         <!-- profile pic -->
-        <div class="cursor-pointer font-bold w-12 h-12 bg-gray-300 flex items-center justify-center rounded-5 me-3">
+        <div class="cursor-pointer w-10 h-12 bg-gray-300 flex aling-items-center justify-content-center rounded-5 me-3">
             <img v-if="usuario.imagem" :src="`storage/users/${usuario.imagem}`" alt="Perfil" class="rounded-5">
             <img v-else src="../../../../public/img/perfil.png" alt="Perfil" class="rounded-5">
         </div>
@@ -30,7 +30,7 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Título:</label>
-                                <textarea v-model="form.titulo" class="form-control rounded-2 resize-none" id="recipient-name" rows="1"></textarea>
+                                <textarea v-model="form.titulo" class="form-control rounded-2 resize-none" id="recipient-name" rows="1" placeholder="Digite o título da publicação"></textarea>
                                 <MensagemErro :mensagem="form.errors.titulo" />
                             </div>
                             
@@ -42,7 +42,7 @@
                             
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Conteúdo:</label>
-                                <textarea v-model="form.conteudo" class="form-control rounded-2 resize-none" id="recipient-name" rows="10"></textarea>
+                                <textarea v-model="form.conteudo" class="form-control rounded-2 resize-none" id="recipient-name" rows="10" placeholder="Digite o conteúdo da sua publicação"></textarea>
                                 <MensagemErro :mensagem="form.errors.conteudo" />
                             </div>
                             
@@ -54,7 +54,7 @@
                             
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger bg-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger bg-danger" data-bs-dismiss="modal" @click.prevent="limpar">Cancelar</button>
                             <button type="submit" class="btn btn-primary bg-primary" :disabled="form.processing">Publicar</button>
                         </div>
                     </form>
@@ -74,6 +74,14 @@ export default {
     components: {
         MensagemErro
     },
+    data() {
+        return {
+            
+        }
+    },
+    watch: {
+        
+    },
     props: {
         usuario: Object
     },
@@ -82,8 +90,18 @@ export default {
             this.form
             .submit('post', route('postagens.store'), {
                 _method: 'put',
+                onSuccess: () => {
+                    this.form.reset();
+                }
             });
         },
+        limpar() {
+            this.form.reset();
+            this.form.titulo = '';
+            this.form.descricao = '';
+            this.form.conteudo = '';
+            this.form.imagem = [];
+        }
     },
     setup () {
         const form = useForm({

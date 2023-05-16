@@ -1,9 +1,10 @@
 <template>
+    <Head title="Painel de Controle"/>
     <Layout
     :numUsuarios="numUsuarios"
     :numPostagens="numPostagens"
     >
-        <div class="card border-secondary mb-3">
+        <div class="card border-secondary mb-3 mx-3">
             <div class="card-header bg-transparent border-secondary">Bem-vindo</div>
             <div class="card-body">
                 <h5 class="card-title">Seja bem-vindo ao Painel de Controle do Mural Etec!</h5>
@@ -13,7 +14,7 @@
             </div>
         </div>
 
-        <div class="card border-secondary mb-3">
+        <div class="card border-secondary mb-3 mx-3">
             <div class="card-header bg-transparent border-secondary">Quadro de avisos</div>
             <div class="card-body">
                 <div v-if="numUsuarios && usuarioLogado.tipo == 'administrador'">
@@ -33,12 +34,14 @@
 <script>
 import SideBar from '@/Components/Sidebar.vue';
 import Layout from '@/Layouts/Layout.vue';
+import { Head } from '@inertiajs/vue3';
 
 export default {
     name: 'Index',
     components: {
         SideBar,
-        Layout
+        Layout,
+        Head
     },
     props: {
         numUsuarios: Number,

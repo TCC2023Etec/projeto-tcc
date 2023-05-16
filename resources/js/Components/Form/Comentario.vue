@@ -1,0 +1,48 @@
+<template>
+    <div class="bg-light rounded-3 shadow">
+        <!-- divider line -->
+        
+        <form @submit.prevent="formSubmit" class="border-0">
+            <div class="mb-3">
+                <input v-model="form.descricao" type="text" class="form-control rounded-lg mx-1" id="recipient-name" placeholder="Digite seu comentário" />
+                <MensagemErro :mensagem="form.errors.descricao" />
+                <button type="submit" class="btn btn-primary bg-primary mt-2" :disabled="form.processing">Comentar</button>
+            </div>
+        </form>
+    </div>
+</template>
+
+<script>
+import { useForm } from '@inertiajs/vue3';
+import MensagemErro from '@/Components/MensagemErro.vue';
+
+export default {
+    name: 'Comentario',
+    components: {
+        MensagemErro
+    },
+    props: {
+        postagem: Object
+    },
+    methods: {
+        formSubmit() {
+            this.form
+            .submit('post', route('comentarios.store', this.postagem.id), {
+                _method: 'put',
+                onSuccess: () => {
+                    this.form.reset();
+                }
+            });
+        },
+    },
+    setup () {
+        const form = useForm({
+            id: null,
+            descricao: '',
+        });
+        
+        return { form };
+    }
+}
+
+</script>

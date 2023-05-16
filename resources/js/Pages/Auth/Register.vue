@@ -68,7 +68,7 @@ const mostrarConfirmacaoSenha = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Register" />
+        <Head title="Cadastro" />
 
         <form @submit.prevent="submit">
             <div>
@@ -104,7 +104,7 @@ const mostrarConfirmacaoSenha = () => {
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                 <InputLabel for="password" value="Senha" />
 
                 <!-- <TextInput
@@ -119,8 +119,8 @@ const mostrarConfirmacaoSenha = () => {
                     <i class='bx bx-show-alt'></i>
                 </button> -->
 
-                <div class="input-group mb-3">
-                    <input type="password" class="form-control senha" placeholder="Digite sua senha" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="form.password">
+                <div class="input-group mb-3 ">
+                    <input type="password" class="form-control senha border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="Digite sua senha" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="form.password">
                     <button @click.prevent="mostrarSenha" id="btn-senha" class="input-group-text">
                         <i class='bx bx-show-alt'></i>
                     </button>
@@ -143,7 +143,7 @@ const mostrarConfirmacaoSenha = () => {
                 <button @click.prevent="mostrarConfirmacaoSenha" id="btn-confirmacao-senha">Mostrar senha</button> -->
 
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control confirmaca_senha" placeholder="Confirme sua senha" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="form.password_confirmation">
+                    <input type="password" class="form-control confirmaca_senha border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="Confirme sua senha" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="form.password_confirmation">
                     <button @click.prevent="mostrarConfirmacaoSenha" id="btn-confirmacao-senha" class="input-group-text">
                         <i class='bx bx-show-alt'></i>
                     </button>

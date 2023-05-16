@@ -62,15 +62,19 @@ const mostrarSenha = () => {
             <div class="mt-4">
                 <InputLabel for="password" value="Password" />
 
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="current-password"
-                />
-                <button @click.prevent="mostrarSenha">Mostrar senha</button>
+                <div class="input-group">
+                    <TextInput
+                        id="password"
+                        type="password"
+                        class="mt-1 block w-full form-control"
+                        v-model="form.password"
+                        required
+                        autocomplete="current-password"
+                    />
+                    <button @click.prevent="mostrarSenha" class="input-group-text bg-transparent">
+                        <i class='bx bx-show-alt'></i>
+                    </button>
+                </div>
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 

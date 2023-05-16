@@ -33,7 +33,8 @@ class PostagemSeeder extends Seeder
             'conteudo' => 'Postagem feita através do seed para manter os testes de migration',
             'imagem' => 'imagem.png',
             'user_id' => $user->id,
-            'situacao' => 'aprovado'
+            'situacao' => 'aprovado',
+            'aprovado_por' => 3
         ]);
 
         Postagem::create([
@@ -42,7 +43,8 @@ class PostagemSeeder extends Seeder
             'conteudo' => 'Na manhã do dia 12/12 foi realizado uma corrida entre as turmas do ensino médio da Etec de Araçatuba. Além de patrocinar o incentivo à corrida, a escola também está arrecadando alimentos para doação à instituições de caridade',
             'imagem' => 'imagem2.png',
             'user_id' => $user1->id,
-            'situacao' => 'aprovado'
+            'situacao' => 'aprovado',
+            'aprovado_por' => 3
         ]);
 
         Postagem::create([
@@ -51,7 +53,8 @@ class PostagemSeeder extends Seeder
             'conteudo' => $texto,
             'imagem' => 'imagem3.png',
             'user_id' => $user1->id,
-            'situacao' => 'aprovado'
+            'situacao' => 'aprovado',
+            'aprovado_por' => 3
         ]);
     }
 }

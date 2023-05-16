@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123123123'),
             'tipo' => 'aluno',
             'curso_id' => 1,
-            'situacao' => 1,
+            'situacao' => 'aprovado',
             'imagem' => ''
         ]);
 
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
             'email' => 'mural.prof@test.com',
             'password' => Hash::make('123123123'),
             'tipo' => 'professor',
-            'situacao' => 1,
+            'situacao' => 'aprovado',
             'imagem' => ''
         ]);
 
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
             'email' => 'mural.admin@test.com',
             'password' => Hash::make('123123123'),
             'tipo' => 'administrador',
-            'situacao' => 1,
+            'situacao' => 'aprovado',
             'imagem' => ''
         ]);
 
@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
             'email' => 'mural.moderador@test.com',
             'password' => Hash::make('123123123'),
             'tipo' => 'moderador',
-            'situacao' => 1,
+            'situacao' => 'aprovado',
             'imagem' => ''
         ]);
     }

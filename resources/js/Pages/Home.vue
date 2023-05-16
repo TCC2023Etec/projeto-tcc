@@ -3,7 +3,7 @@
         <AdminLayout />
         <div class="container-fluid">
             
-            <div class="row">
+            <div class="row d-flex flex-row flex-sm-column flex-md-row">
                 <div  class="col-3">
                     <CardProfile v-if="usuarioLogado" :usuario="usuarioLogado || usuarioDefault" />
                 </div>
