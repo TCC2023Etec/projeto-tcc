@@ -1,8 +1,8 @@
 <template>
 
-    <div class="card mb-3 shadow h-30 w-75">
+    <div class="card mb-3 shadow h-30 w-75 principal">
         <div class="card-body">
-            <div class="d-flex flex-column align-items-center text-center justify-around">
+            <div class="d-flex flex-column align-items-center text-center justify-content-around">
                 <img v-if="usuario.imagem" :src="`storage/users/${usuario.imagem}`" alt="user profile picture" class="rounded-circle" width="200">
                 <img v-else src="../../../public/img/perfil.png" alt="user profile picture" class="rounded-circle" width="130">
                 <div class="mt-5 fs-5">
@@ -31,3 +31,11 @@ export default {
     }
 }
 </script>
+
+<style>
+.principal {
+    position: sticky;
+    top: 0;
+}
+
+</style>
