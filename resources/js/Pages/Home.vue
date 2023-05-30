@@ -5,12 +5,12 @@
             
             <div class="row d-flex flex-row flex-sm-column flex-md-row">
                 <div  class="col-3">
-                    <CardProfile v-if="usuarioLogado" :usuario="usuarioLogado || usuarioDefault" />
+                    <CardProfile v-if="usuarioLogado" :usuario="usuario" />
                 </div>
                 
                 <div class="col-6">
-                    <NewPost v-if="usuarioLogado" :usuario="usuarioLogado || usuarioDefault" />
-                    <Card :postagens="postagens"/>
+                    <NewPost v-if="usuarioLogado" :usuario="usuario" />
+                    <Card :postagens="postagens" :source="source"/>
                 </div>
             </div>
         </div>
@@ -36,16 +36,12 @@ export default {
     props: {
         postagens: Array,
         cursos: Array,
+        source: String,
+        usuario: Object
     },
     data () {
         return {
             usuarioLogado: this.$page.props.auth.user,
-            usuarioDefault: {
-                name: "Perfil",
-                tipo: "Usuário",
-                curso: "Etec Araçatuba",
-                imagem: ''
-            }
         }
     }
 }
@@ -54,5 +50,6 @@ export default {
 <style>
 #container {
     background-color: rgb(236, 236, 236);
+    min-height: 100vh;
 }
 </style>

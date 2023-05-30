@@ -1,5 +1,5 @@
 <template>
-    <nav v-if="!$page.props.auth.user" class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav v-if="!$page.props.auth.user" class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <Link class="navbar-brand texto" :href="route('login')">Login</Link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdatePostagem;
+use App\Models\Favorito;
 use App\Models\Like;
 use App\Models\Postagem;
 use App\Models\User;
@@ -112,6 +113,9 @@ class PostagemController extends Controller
     public function like(Postagem $postagem)
     {
         $user = Auth::user();
+        if(!$user) {
+            return;
+        }
 
         $like = Like::where('user_id', $user->id)
         ->where('likable_id', $postagem->id)
@@ -125,6 +129,22 @@ class PostagemController extends Controller
             $postagem->likes()->create([
                 'user_id' => $user->id
             ]);
+        }
+    }
+
+    public function favorito(Postagem $postagem)
+    {
+        $user = Auth::user();
+        $usuario = User::find($user->id);
+
+        $favorito = $usuario->favoritos()->where('postagem_id', $postagem->id)->first();
+
+        if($favorito) {
+            // $usuario->favoritos()->detach($postagem);
+            $favorito->delete();
+            return;
+        } else {
+            $usuario->favoritos()->save($postagem);
         }
     }
 

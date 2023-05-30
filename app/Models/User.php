@@ -75,6 +75,11 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    public function favoritos()
+    {
+        return $this->hasMany(Favorito::class);
+    }
+
     public function aprovado()
     {
         $this->situacao = 'aprovado';

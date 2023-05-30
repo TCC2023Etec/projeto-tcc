@@ -10,7 +10,7 @@
                 <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close">X</button>
             </div>
         </div>
-        <div class="icon-wpp bx-lg"><a href="#"><i class='bx bxl-whatsapp'></i></a></div>
+        <div class="icon-wpp bx-lg"><a href="#"><i class='bx bx-conversation bx-lg'></i></a></div>
     </div>
 </template>
 
@@ -39,8 +39,8 @@ export default {
 <style>
 .icon-wpp {
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    bottom: 20px;
+    right: 20px;
 
     width: 50px;
     height: 50px;

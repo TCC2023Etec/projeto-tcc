@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar bg-body-tertiary navbar-bg mb-3 d-flex flex-sm-row">
+    <nav class="navbar navbar-bg mb-3 d-flex flex-sm-row">
         <div class="">
             <Link class="navbar-brand text-light ms-2" :href="route('inicial.index')">
                 Mural - Etec Araçatuba

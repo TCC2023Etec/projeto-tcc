@@ -18,7 +18,8 @@ class Postagem extends Model
     protected $table = 'postagens';
 
     protected $appends = [
-        'like'
+        'like',
+        // 'favoritos'
     ];
 
     // Relações
@@ -37,6 +38,12 @@ class Postagem extends Model
         return $this->morphMany(Like::class, 'likable');
     }
 
+    public function favoritos()
+    {
+        // return $this->belongsToMany(User::class, 'favoritos', 'postagem_id', 'user_id');
+        return $this->belongsToMany(Favorito::class);
+    }
+
     public function getUsuarioLogadoCurtiuAttribute()
     {
         $usuario = Auth::user();
@@ -50,6 +57,20 @@ class Postagem extends Model
 
         return $this->likes->where('usuario.id', $usuario->id)->isNotEmpty();
     }
+
+    // public function getFavoritosAttribute()
+    // {
+    //     $usuario = Auth::user();
+    //     if (!$usuario) {
+    //         return false;
+    //     }
+
+    //     if (! $this->relationLoaded('favoritos')) {
+    //         $this->favoritos;
+    //     }
+        
+    //     return $this->favoritos()->where('user_id', $usuario->id)->exists();
+    // }
 
     // Getters
     public function getLikeAttribute()
