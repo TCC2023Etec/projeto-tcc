@@ -54,11 +54,11 @@
     50% {
         transform: rotate(0);
     }
-    75% {
+    /* 75% {
         transform: rotate(45deg);
     }
     100% {
         transform: rotate(0);
-    }
+    } */
 }
 </style>
