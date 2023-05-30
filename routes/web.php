@@ -32,8 +32,8 @@ Route::controller(InicialController::class)->group(function () {
     Route::get('/', 'index')->name('inicial.index');
     Route::get('/aguardando-validacao', 'aguardando_validacao')->name('aguardando-validacao');
     Route::get('/requisicao-recusada', 'requisicao_recusada')->name('requisicao.recusada');
-    Route::get('/postagens/favoritos', 'postagensFavoritas')->name('postagens.favoritos');
-    Route::get('/minhas-publicacoes', 'minhasPostagens')->name('postagens.minhasPostagens');
+    Route::get('/postagens/favoritos', 'postagensFavoritas')->name('postagens.favoritos')->middleware('auth');
+    Route::get('/minhas-publicacoes', 'minhasPostagens')->name('postagens.minhasPostagens')->middleware('auth');
 });
 
 

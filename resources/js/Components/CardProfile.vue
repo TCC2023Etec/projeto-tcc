@@ -8,7 +8,7 @@
                 <div class="mt-5 fs-5 border-bottom text-center">
                     <h4> {{ usuario.name }}</h4>
                     <p class="text-secondary mb-1">{{ tipoUsuario }}</p>
-                    <p class="text-muted font-size-sm">{{ usuario.curso.nome }}</p>
+                    <p v-if="usuario.curso" class="text-muted font-size-sm">{{ usuario.curso.nome }}</p>
                     <!-- <button class="btn btn-primary">Editar perfil</button> -->
                 </div>
                 <div class="d-flex flex-column mt-3 gap-1 text-start justify-content-start align-items-start">

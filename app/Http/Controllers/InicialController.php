@@ -20,9 +20,12 @@ class InicialController extends Controller
 
         $postagens->load('usuario');
 
-        $user = Auth::user();
-        $usuario = User::find($user->id);
-        $usuario->load('curso');
+        $usuario = null;
+        if (Auth::check()) {
+            $user = Auth::user();
+            $usuario = User::find($user->id);
+            $usuario->load('curso');
+        }
 
         return inertia('Home', ['postagens' => $postagens, 'source' => 'index', 'usuario' => $usuario]);
     }
