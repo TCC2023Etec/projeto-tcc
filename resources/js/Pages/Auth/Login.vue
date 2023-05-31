@@ -71,7 +71,7 @@ const mostrarSenha = () => {
                         required
                         autocomplete="current-password"
                     />
-                    <button @click.prevent="mostrarSenha" class="input-group-text bg-transparent">
+                    <button @click.prevent="mostrarSenha" class="input-group-text bg-transparent mt-1">
                         <i class='bx bx-show-alt'></i>
                     </button>
                 </div>

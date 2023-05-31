@@ -19,7 +19,6 @@ class Postagem extends Model
 
     protected $appends = [
         'like',
-        // 'favoritos'
     ];
 
     // Relações
@@ -58,19 +57,21 @@ class Postagem extends Model
         return $this->likes->where('usuario.id', $usuario->id)->isNotEmpty();
     }
 
-    // public function getFavoritosAttribute()
-    // {
-    //     $usuario = Auth::user();
-    //     if (!$usuario) {
-    //         return false;
-    //     }
+    public function getUsuarioLogadoFavoritosAttribute()
+    {
+        $usuario = Auth::user();
+        if (!$usuario) {
+            return false;
+        }
 
-    //     if (! $this->relationLoaded('favoritos')) {
-    //         $this->favoritos;
-    //     }
-        
-    //     return $this->favoritos()->where('user_id', $usuario->id)->exists();
-    // }
+        $favoritos = Favorito::where('postagem_id', $this->id, 'user_id', $usuario->id);
+
+        if ($favoritos) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     // Getters
     public function getLikeAttribute()

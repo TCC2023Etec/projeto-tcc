@@ -16,7 +16,7 @@ class InicialController extends Controller
     public function index()
     {
         $postagens = Postagem::where('situacao', 'aprovado')->orderBy('created_at', 'desc')->get();
-        $postagens->append('usuario_logado_curtiu');
+        $postagens->append('usuario_logado_curtiu', 'usuario_logado_favoritos');
 
         $postagens->load('usuario');
 
