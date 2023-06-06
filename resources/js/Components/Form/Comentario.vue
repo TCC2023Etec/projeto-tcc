@@ -8,6 +8,20 @@
                 <button type="submit" class="btn btn-primary bg-primary mt-2" :disabled="form.processing">Comentar</button>
             </div>
         </form>
+
+        <!-- Comentários -->
+        <div class="comentarios">
+            <div v-for="comentario in postagem.comentarios" class="d-flex flex-row card mb-3 p-2 comentario-card">
+                <div class="comentario-img cursor-pointer w-10 h-12 bg-gray-300 flex aling-items-center justify-content-center rounded-5 me-3">
+                    <img v-if="comentario.usuario.imagem" :src="`storage/users/${usuario.imagem}`" alt="Perfil" class="rounded-5">
+                    <img v-else src="../../../../public/img/perfil.png" alt="Perfil" class="rounded-5">
+                </div>
+                <div class="comentario-descricao">
+                    <h4 class="fw-bold">{{ comentario.usuario.name }}</h4>
+                    <p>{{ comentario.descricao }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -52,3 +66,9 @@ export default {
 }
 
 </script>
+
+<style>
+.comentario-card img {
+    min-width: 50px;
+}
+</style>
