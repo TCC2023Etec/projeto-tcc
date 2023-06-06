@@ -5,7 +5,7 @@
     @click.prevent="favorito(postagem)" 
     :class="{ 'text-yellow-500': postagem.usuario_logado_favoritos}" 
     class="d-flex justify-content-center align-items-center">
-        <i class='bx bxs-star me-1' :class="{'btn-animacao': animacaoAtiva}" :style="{color: postagem.usuario_logado_favoritos ? 'yellow-500' : ''}"></i>
+        <i class='bx bxs-star me-1' :class="{'btn-animacao-favorito': animacaoAtiva}" :style="{color: postagem.usuario_logado_favoritos ? 'yellow-500' : ''}"></i>
         Favorito
     </button>
 </template>
@@ -36,7 +36,7 @@
 </script>
 
 <style>
-.btn-animacao {
+.btn-animacao-favorito {
     animation-name: rotacao-favorito;
     animation-duration: 2s;
     animation-timing-function: ease-in-out;
