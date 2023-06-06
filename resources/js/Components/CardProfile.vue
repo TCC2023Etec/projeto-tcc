@@ -13,8 +13,8 @@
                 </div>
                 <div class="d-flex flex-column mt-3 gap-1 text-start justify-content-start align-items-start">
                     <button @click.prevent="postagensFavoritos"><i class='bx bxs-star me-1'></i>Favoritos</button>
-                    <button><i class='bx bxs-like me-1'></i>Curtidos</button>
-                    <button @click.prevent="criarPostagem"><i class='bx bxs-edit-alt me-1'></i>Nova Publicação</button>
+                    <button @click.prevent="postagensCurtidas"><i class='bx bxs-like me-1'></i>Curtidos</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#postModal"><i class='bx bxs-edit-alt me-1'></i>Nova Publicação</button>
                     <button @click.prevent="minhasPostagens"><i class='bx bx-windows me-1'></i>Minhas Publicação</button>
                 </div>
             </div>
@@ -44,6 +44,9 @@ export default {
             this.$inertia.get(route('postagens.minhasPostagens'), {}, {
                     // preserveScroll: true,
                 })
+        },
+        postagensCurtidas() {
+            this.$inertia.get(route('postagens.curtidas'))
         }
     },  
     computed: {
@@ -60,5 +63,4 @@ export default {
     position: sticky;
     top: 10px;
 }
-
 </style>
