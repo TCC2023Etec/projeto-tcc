@@ -111,6 +111,8 @@ class PostagemController extends Controller
 
     public function postagem_negada(Postagem $postagem)
     {
+        $this->authorize('validar', $postagem);
+        
         $postagem->reprovado();
 
         $postagem->aprovado_por = auth()->user()->id;
