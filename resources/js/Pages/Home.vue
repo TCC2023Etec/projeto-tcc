@@ -3,12 +3,12 @@
         <AdminLayout />
         <div class="container-fluid">
             
-            <div class="row d-flex flex-row flex-sm-column flex-md-row">
-                <div  class="col-3">
+            <div class="row d-flex flex-column flex-md-row">
+                <div  class="col-sm-12 col-md-3">
                     <CardProfile v-if="usuarioLogado" :usuario="usuario" />
                 </div>
                 
-                <div class="col-6">
+                <div class="col-sm-12 col-md-6">
                     <NewPost v-if="usuarioLogado" :usuario="usuario" />
                     <Card :postagens="postagens" :source="source"/>
                 </div>

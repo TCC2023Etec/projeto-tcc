@@ -18,7 +18,7 @@ class InicialController extends Controller
         $postagens = Postagem::where('situacao', 'aprovado')->orderBy('created_at', 'desc')->get();
         $postagens->append('usuario_logado_curtiu', 'usuario_logado_favoritos');
 
-        $postagens->load('usuario');
+        $postagens->load('usuario', 'comentarios', 'comentarios.usuario');
 
         $usuario = null;
         if (Auth::check()) {
@@ -55,16 +55,17 @@ class InicialController extends Controller
         $usuario->load('curso');
 
         $likes = Like::where('user_id', $user->id)
-        ->where('likeable_type', 'App\Models\Postam')
-        ->with('postagem', 'postagem.usuario')
+        ->where('likable_type', 'App\Models\Postagem')
+        // ->with('postagem', 'postagem.usuario')
         ->orderBy('created_at', 'desc')
         ->get();
         
         $postagens = $likes->map(function ($likes) {
             return $likes->postagem;
         });
+        // dd($likes);
 
-        return inertia('Home', ['postagens' => $postagens, 'source' => 'curtidos', 'usuario' => $usuario]);
+        return inertia('Home', ['postagens' => $likes, 'source' => 'curtidos', 'usuario' => $usuario]);
     }
 
     public function minhasPostagens()

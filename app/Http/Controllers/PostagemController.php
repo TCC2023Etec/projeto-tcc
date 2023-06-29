@@ -59,7 +59,16 @@ class PostagemController extends Controller
 
     public function show (Postagem $postagem)
     {
-        return inertia('Postagem/Show', ['postagem' => $postagem]);
+        $usuario = null;
+        if (Auth::check()) {
+            $user = Auth::user();
+            $usuario = User::find($user->id);
+            $usuario->load('curso');
+        }
+
+        $postagem->load('usuario');
+
+        return inertia('Postagem/Show', ['postagem' => $postagem, 'usuario' => $usuario]);
     }
 
     public function show_administrador(Postagem $postagem)

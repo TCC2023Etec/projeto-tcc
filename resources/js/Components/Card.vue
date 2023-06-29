@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="postagem in postagens" class="card mb-3 w-md-15 w-lg-15 shadow-sm" id="card-post">
+        <div v-for="postagem in postagens" class="card mb-3 w-md-15 shadow-sm" id="card-post">
             <img v-if="postagem.imagem" :src="`/storage/postagem/${postagem.imagem}`" class="card-img-top img-fuild object-fit-fill" style="height: 250px" alt="Postagem">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold fs-4 mb-0">{{ postagem.titulo }}</h5>
@@ -20,7 +20,7 @@
                 <!-- <button class="d-flex justify-content-center align-items-center"><i class='bx bxs-bookmark me-1'></i>Salvar</button> -->
                 <BotaoFavorito :postagem="postagem"/>
             </div>
-            <Comentario :postagem="postagem" :mostraComentario="postagem.id === mostraComentario"/>
+            <Comentario :postagem="postagem" :mostraComentario="mostraComentario === postagem.id" class="comentario-transition"/>
         </div>
 
         <div v-if="source === 'minhasPostagens' && postagens.length < 1" class="card mb-3 w-md-15 w-lg-15 shadow-sm teste">
@@ -76,10 +76,10 @@ export default {
             postagem.visivel = false;
         },
         mostrarComentario(postagemId) {
-            if (this.comentarioAberto === postagemId) {
-                this.mostraComentario = null
+            if (this.mostraComentario === postagemId) {
+                this.mostraComentario = null; // Desmarca a postagem selecionada
             } else {
-                this.mostraComentario = postagemId
+                this.mostraComentario = postagemId; // Marca a postagem selecionada
             }
         },
     }
@@ -87,9 +87,9 @@ export default {
 </script>
 
 <style>
-#card-post {
+/* #card-post {
     width: 650px;
-}
+} */
 
 .visivel {
     white-space: pre-wrap;

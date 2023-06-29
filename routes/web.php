@@ -34,6 +34,7 @@ Route::controller(InicialController::class)->group(function () {
     Route::get('/requisicao-recusada', 'requisicao_recusada')->name('requisicao.recusada');
     Route::get('/postagens/favoritos', 'postagensFavoritas')->name('postagens.favoritos')->middleware('auth');
     Route::get('/minhas-publicacoes', 'minhasPostagens')->name('postagens.minhasPostagens')->middleware('auth');
+    Route::get('/postagens-curtidas', 'postagensCurtidas')->name('postagens.curtidas')->middleware('auth');
 });
 
 
@@ -85,8 +86,7 @@ Route::middleware(['auth', 'verSituacao', CheckUserType::class])->group(function
         Route::post('/postagens/aprovada/{postagem}', 'postagem_aprovada')->name('postagens.aprovada');
         Route::post('/postagens/negada/{postagem}', 'postagem_negada')->name('postagens.negada');
 
-        Route::post('/postagens/like/{postagem}', 'like')->name('postagens.like')->withoutMiddleware(CheckUserType::class);
-        Route::post('/postagens/favorito/{postagem}', 'favorito')->name('postagens.favorito')->withoutMiddleware(CheckUserType::class);
+        
     });    
 
     
@@ -99,6 +99,9 @@ Route::middleware(['auth', 'verSituacao'])->namespace('App\Http\Controllers')->g
         Route::get('/nova-publicacao', 'create_postagem')->name('postagens.store');
         Route::get('/publicacao/{postagem}', 'show')->name('postagens.show')->withoutMiddleware(['auth', 'verSituacao']);
         Route::post('/nova-publicacao', 'store')->name('postagens.store');
+
+        Route::post('/postagens/like/{postagem}', 'like')->name('postagens.like');
+        Route::post('/postagens/favorito/{postagem}', 'favorito')->name('postagens.favorito');
     });   
 
     // Comentários

@@ -18,6 +18,7 @@
                 </div>
                 <div class="comentario-descricao">
                     <h4 class="fw-bold">{{ comentario.usuario.name }}</h4>
+                    <span class="text-muted">{{ comentario.created_at }}</span>
                     <p>{{ comentario.descricao }}</p>
                 </div>
             </div>

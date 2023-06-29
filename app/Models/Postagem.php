@@ -43,6 +43,11 @@ class Postagem extends Model
         return $this->belongsToMany(Favorito::class);
     }
 
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class);
+    }
+
     public function getUsuarioLogadoCurtiuAttribute()
     {
         $usuario = Auth::user();
