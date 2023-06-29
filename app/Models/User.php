@@ -91,4 +91,10 @@ class User extends Authenticatable
         $this->situacao = 'reprovado';
         $this->save();
     }
+
+    public function inativar()
+    {
+        $this->ativo = false;
+        $this->save();
+    }
 }

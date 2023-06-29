@@ -66,7 +66,7 @@ class UserPolicy
     {
         return $user->tipo == 'administrador'
             ? Response::allow()
-            : Response::deny('Você não tem a permissão de deletar um usuário');
+            : Response::deny('Você não tem a permissão de excluir um usuário');
     }
 
     /**

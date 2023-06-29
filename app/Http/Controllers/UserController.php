@@ -123,9 +123,13 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('mensagem', 'Usuário atualizado com sucesso!');
     }
 
-    public function destroy()
+    public function destroy(User $usuario)
     {
+        $this->authorize('delete', $user);
 
+        $usuario->inativar();
+
+        return inertia('Usuarios/Index')->with('mensagem', 'Usuário excluído com sucesso!');
     }
 
     public function lista_aprova_usuario ()
