@@ -84,6 +84,22 @@ class Postagem extends Model
         return $this->likes->count();
     }
 
+    public function getDestaqueAttribute()
+    {
+        $postagens = Postagem::all();
+
+        foreach ($postagens as $postagem) {
+            $postagem->likes = DB::table('likes')
+                ->where('likeable_id', $postagem->id)
+                ->where('likeable_type', Postagem::class)
+                ->count();
+        }
+
+        $posts = $postagem->orderBy('likes')->take(5);
+        
+        return $posts;
+    }
+
     /**
      * Essa função formata o modelo da data salva
      */

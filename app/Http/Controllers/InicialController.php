@@ -20,6 +20,8 @@ class InicialController extends Controller
 
         $postagens->load('usuario', 'comentarios', 'comentarios.usuario');
 
+        $postagemDestaque = Postagem::orderBy('created_at')->limit(5)->get();
+
         $usuario = null;
         if (Auth::check()) {
             $user = Auth::user();
@@ -27,7 +29,7 @@ class InicialController extends Controller
             $usuario->load('curso');
         }
 
-        return inertia('Home', ['postagens' => $postagens, 'source' => 'index', 'usuario' => $usuario]);
+        return inertia('Home', ['postagens' => $postagens, 'source' => 'index', 'usuario' => $usuario, 'postagemDestaque', $postagemDestaque]);
     }
 
     public function postagensFavoritas() 

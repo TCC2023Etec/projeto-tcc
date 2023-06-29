@@ -12,6 +12,10 @@
                     <NewPost v-if="usuarioLogado" :usuario="usuario" />
                     <Card :postagens="postagens" :source="source"/>
                 </div>
+
+                <div  class="col-sm-12 col-md-3">
+                    <CardDestaque  :postagens="postagemDestaque"/>
+                </div>
             </div>
         </div>
     </div>
@@ -21,6 +25,7 @@
 import Navbar from '../Components/Navbar.vue';
 import AdminLayout from '@/Layouts/Admin.vue';
 import CardProfile from '@/Components/CardProfile.vue';
+import CardDestaque from '@/Components/CardDestaque.vue';
 import Card from '@/Components/Card.vue';
 import NewPost from '@/Components/Form/NewPost.vue';
 
@@ -31,10 +36,12 @@ export default {
         AdminLayout,
         CardProfile,
         Card,
-        NewPost
+        NewPost,
+        CardDestaque
     },
     props: {
         postagens: Array,
+        postagemDestaque: Array,
         cursos: Array,
         source: String,
         usuario: Object
