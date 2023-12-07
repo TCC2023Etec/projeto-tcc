@@ -11,15 +11,21 @@
 
         <!-- Comentários -->
         <div class="comentarios">
-            <div v-for="comentario in postagem.comentarios" class="d-flex flex-row card mb-3 p-2 comentario-card">
-                <div class="comentario-img cursor-pointer w-10 h-12 bg-gray-300 flex aling-items-center justify-content-center rounded-5 me-3">
-                    <img v-if="comentario.usuario.imagem" :src="`storage/users/${usuario.imagem}`" alt="Perfil" class="rounded-5">
-                    <img v-else src="../../../../public/img/perfil.png" alt="Perfil" class="rounded-5">
+            <div v-for="comentario in postagem.comentarios" class="d-flex flex-row justify-content-between card mb-3 p-2 comentario-card">
+                <div class="d-flex flex-row">
+                    <div class="comentario-img cursor-pointer w-10 h-12 bg-gray-300 flex aling-items-center justify-content-center rounded-5 me-3">
+                        <img v-if="comentario.usuario.imagem" :src="`storage/users/${usuario.imagem}`" alt="Perfil" class="rounded-5">
+                        <img v-else src="../../../../public/img/perfil.png" alt="Perfil" class="rounded-5">
+                    </div>
+                    <div class="comentario-descricao">
+                        <h4 class="fw-bold">{{ comentario.usuario.name }}</h4>
+                        <span class="text-muted">{{ comentario.created_at }}</span>
+                        <p>{{ comentario.descricao }}</p>
+                    </div>
                 </div>
-                <div class="comentario-descricao">
-                    <h4 class="fw-bold">{{ comentario.usuario.name }}</h4>
-                    <span class="text-muted">{{ comentario.created_at }}</span>
-                    <p>{{ comentario.descricao }}</p>
+
+                <div>
+                    <button v-if="usuarioLogado && usuarioLogado.tipo == 'administrador'" @click="destroy(comentario)"><i class='bx bx-trash'></i></button>
                 </div>
             </div>
         </div>
@@ -42,6 +48,7 @@ export default {
     data() {
         return {
             // mostraComentario: false
+            usuarioLogado: this.$page.props.auth.user,
         }
     },
     methods: {
@@ -55,6 +62,14 @@ export default {
                 }
             });
         },
+        
+        destroy(comentario) {
+            if (confirm('Deseja excluir esse comentário?')) {
+                this.$inertia.delete(route('comentarios.destroy', comentario.id), {}, {
+                    preserveScroll: true,
+                })
+            }
+        }
     },
     setup () {
         const form = useForm({

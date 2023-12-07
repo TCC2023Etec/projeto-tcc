@@ -71,6 +71,13 @@ class PostagemController extends Controller
         return inertia('Postagem/Show', ['postagem' => $postagem, 'usuario' => $usuario]);
     }
 
+    public function delete(Postagem $postagem)
+    {
+        $postagem->delete();
+
+        return redirect()->route('inicial.index')->with('mensagem', 'Postagem excluída com sucesso!');
+    }
+
     public function show_administrador(Postagem $postagem)
     {
         return inertia('Administrador/ShowPostagem', ['postagem' => $postagem]);
