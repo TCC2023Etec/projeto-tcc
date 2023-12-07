@@ -43,7 +43,9 @@ class PostagemPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->tipo == 'administrador' || $user->tipo == 'professor'
+                ? Response::allow()
+                : Response::deny('Você não tem a permissão de criar um usuário');
     }
 
     /**
